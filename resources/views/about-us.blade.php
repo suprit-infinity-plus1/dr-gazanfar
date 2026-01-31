@@ -7,7 +7,7 @@
 
 @section('content')
     <!-- Start Breadcrumb
-                ============================================= -->
+                                                                                            ========================================= -->
     <div class="breadcrumb-area bg-gradient text-center">
         <!-- Fixed BG -->
         <div class="fixed-bg" style="background-image: url({{ asset('assets/img/shape/9.png') }});"></div>
@@ -28,7 +28,7 @@
     <!-- End Breadcrumb -->
 
     <!-- Start About
-                ============================================= -->
+                                                                                          =========================================== -->
     <div class="about-area bg-gray default-padding relative">
 
         <!-- Shape -->
@@ -61,12 +61,17 @@
                 </div>
 
                 <div class="col-lg-6 info title">
-                    <h5>Has been working since 2000</h5>
-                    <h2>A Great Place to Work. A Great Place to <strong>Receive.</strong></h2>
+                    <h5>Authority & Expertise</h5>
+                    <h2>Trusted Orthopaedic Expertise for Pain-Free Movement</h2>
                     <p>
-                        Pursuit chamber as elderly amongst on. Distant however warrant farther to of. My justice wishing
-                        prudent waiting in be. Who decisively attachment has dispatched. Fruit defer in party me built under
-                        first. Forbade him but savings
+                        Dr. Gazanfar Patel is a highly respected Senior Consultant Orthopaedic Surgeon specializing in
+                        Minimally Invasive, Robotic Joint Replacement and Sports Medicine. With a strong academic background
+                        and extensive international training, he is committed to delivering precise, patient-centric
+                        orthopaedic care using the latest surgical advancements.<br>
+
+                        <br>
+                        With over a decade of clinical excellence, Dr. Patel has successfully treated thousands of patients,
+                        helping them regain mobility, relieve pain, and return to active lifestyles with confidence.
                     </p>
                     <ul>
                         <li>
@@ -86,7 +91,8 @@
                             </div>
                         </li>
                     </ul>
-                    <a class="btn btn-md btn-gradient" href="#"><i class="fas fa-angle-right"></i> Make Appoinment</a>
+                    <a class="btn btn-md btn-gradient" href="#"><i class="fas fa-angle-right"></i> Make
+                        Appoinment</a>
                 </div>
 
             </div>
@@ -95,17 +101,19 @@
     <!-- End About -->
 
     <!-- Start Services
-                ============================================= -->
-    <div class="department-area icon-only carousel-shadow default-padding bottom-less">
+                                                                                        ============================================= -->
+    <div class="department-area icon-only default-padding bottom-less">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="site-heading text-center">
                         <h4>Services</h4>
-                        <h2>Our Department</h2>
+                        <h2>Our Treatments</h2>
                         <p>
-                            While mirth large of on front. Ye he greater related adapted proceed entered an. Through it
-                            examine express promise no. Past add size game cold girl off how old
+                            Dr. Gazanfar Patel offers comprehensive orthopaedic care with a focus on advanced surgical
+                            techniques and patient-centered treatment plans. His expertise covers a wide range of
+                            orthopaedic conditions, ensuring every patient receives personalized care tailored to their
+                            specific needs.
                         </p>
                     </div>
                 </div>
@@ -113,94 +121,67 @@
         </div>
         <div class="container">
             <div class="item-box text-center">
-                <div class="department-carousel owl-carousel owl-theme">
+                <div class="row">
                     <!-- Single Item -->
-                    <div class="item">
-                        <div class="info">
-                            <h4>
-                                <a href="#">Body Surgery</a>
-                            </h4>
-                            <div class="icon">
-                                <i class="flaticon-broken-bone"></i>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="item">
+                            <div class="info">
+                                <h4>
+                                    <a href="#">Knee Replacement</a>
+                                </h4>
+                                <div class="icon">
+                                    <i class="flaticon-broken-bone"></i>
+                                </div>
+                                <p>
+                                    Specialized surgical procedure to restore function and relieve pain in a severely
+                                    diseased knee joint, using advanced implants for lasting mobility.
+                                </p>
+                                <a class="btn btn-sm circle btn-theme border" href="#"><i
+                                        class="fas fa-angle-right"></i>
+                                    Read More</a>
                             </div>
-                            <p>
-                                Attachment astonished to on appearance imprudence so collecting date expert over excellence.
-                                Tiled way blind lived.
-                            </p>
-                            <a class="btn btn-sm circle btn-theme border" href="#"><i class="fas fa-angle-right"></i>
-                                Read More</a>
                         </div>
                     </div>
                     <!-- End Single Item -->
                     <!-- Single Item -->
-                    <div class="item">
-                        <div class="info">
-                            <h4>
-                                <a href="#">Knee Treatment</a>
-                            </h4>
-                            <div class="icon">
-                                <i class="flaticon-tooth-1"></i>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="item">
+                            <div class="info">
+                                <h4>
+                                    <a href="#">Hip Treatment</a>
+                                </h4>
+                                <div class="icon">
+                                    <i class="flaticon-broken-bone"></i>
+                                </div>
+                                <p>
+                                    Comprehensive solutions for hip pain and injuries, ranging from personalized
+                                    physiotherapy to advanced surgical interventions for joint health.
+                                </p>
+                                <a class="btn btn-sm circle btn-theme border" href="#"><i
+                                        class="fas fa-angle-right"></i>
+                                    Read More</a>
                             </div>
-                            <p>
-                                Attachment astonished to on appearance imprudence so collecting date expert over excellence.
-                                Tiled way blind lived.
-                            </p>
-                            <a class="btn btn-sm circle btn-theme border" href="#"><i class="fas fa-angle-right"></i>
-                                Read More</a>
                         </div>
                     </div>
                     <!-- End Single Item -->
                     <!-- Single Item -->
-                    <div class="item">
-                        <div class="info">
-                            <h4>
-                                <a href="#">Eye Care</a>
-                            </h4>
-                            <div class="icon">
-                                <i class="flaticon-ophtalmology"></i>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="item">
+                            <div class="info">
+                                <h4>
+                                    <a href="#">Knee Arthroscopy</a>
+                                </h4>
+                                <div class="icon">
+                                    <i class="flaticon-broken-bone"></i>
+                                </div>
+                                <p>
+                                    A minimally invasive technique to diagnose and treat joint problems, ensuring faster
+                                    recovery and minimal scarring through keyhole surgery.
+                                </p>
+                                <a class="btn btn-sm circle btn-theme border" href="#"><i
+                                        class="fas fa-angle-right"></i>
+                                    Read More</a>
                             </div>
-                            <p>
-                                Attachment astonished to on appearance imprudence so collecting date expert over excellence.
-                                Tiled way blind lived.
-                            </p>
-                            <a class="btn btn-sm circle btn-theme border" href="#"><i class="fas fa-angle-right"></i>
-                                Read More</a>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="item">
-                        <div class="info">
-                            <h4>
-                                <a href="#">Blood Cancer</a>
-                            </h4>
-                            <div class="icon">
-                                <i class="flaticon-blood"></i>
-                            </div>
-                            <p>
-                                Attachment astonished to on appearance imprudence so collecting date expert over excellence.
-                                Tiled way blind lived.
-                            </p>
-                            <a class="btn btn-sm circle btn-theme border" href="#"><i class="fas fa-angle-right"></i>
-                                Read More</a>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="item">
-                        <div class="info">
-                            <h4>
-                                <a href="#">Neurology Sargery</a>
-                            </h4>
-                            <div class="icon">
-                                <i class="flaticon-neurology"></i>
-                            </div>
-                            <p>
-                                Attachment astonished to on appearance imprudence so collecting date expert over excellence.
-                                Tiled way blind lived.
-                            </p>
-                            <a class="btn btn-sm circle btn-theme border" href="#"><i class="fas fa-angle-right"></i>
-                                Read More</a>
                         </div>
                     </div>
                     <!-- End Single Item -->
@@ -211,7 +192,7 @@
     <!-- End Services -->
 
     <!-- Start Choose Us
-                ============================================= -->
+                                                                                            ========================================= -->
     <div class="choose-us-area relative inc-list">
         <div class="row">
             <div class="col-lg-6 thumb bg-cover" style="background-image: url({{ asset('assets/img/banner/3.jpg') }});">
@@ -219,30 +200,30 @@
             <div class="col-lg-6 info">
                 <div class="info-box title">
                     <h5>Why Choose Us</h5>
-                    <h2>At Our Clinic Our <br> Doctors Specialize in you.</h2>
+                    <h2>Specialized Joint Care <br> and Orthopaedic Solutions.</h2>
                     <ul>
                         <li>
-                            <h5>More Experience</h5>
+                            <h5>Expert Surgeon</h5>
                             <p>
-                                Be confident in the treatment plan and your doctor’s abilities.
+                                Trust in our specialized joint replacement and surgical plans.
                             </p>
                         </li>
                         <li>
-                            <h5>The right answers?</h5>
+                            <h5>Surgical Results?</h5>
                             <p>
-                                Get the answers and assurance you deserve and you can trust.
+                                Receive the advanced medical expertise that you can rely on.
                             </p>
                         </li>
                         <li>
-                            <h5>Seamless care</h5>
+                            <h5>Fast Recovery</h5>
                             <p>
-                                We’re committed to delivering compassionate healthcare.
+                                We are dedicated to providing expert orthopaedic treatment.
                             </p>
                         </li>
                         <li>
-                            <h5>Unparalleled expertise</h5>
+                            <h5>Specialized Treatment</h5>
                             <p>
-                                Don’t doubt that you are getting the expert care that you deserve.
+                                Rest assured that you are receiving the expert care you deserve.
                             </p>
                         </li>
                     </ul>
@@ -254,8 +235,8 @@
     <!-- End Choose Us -->
 
     <!-- Start Team
-                ============================================= -->
-    <div class="team-default-area bg-gray default-padding bottom-less">
+                                                                                          =========================================== -->
+    {{-- <div class="team-default-area bg-gray default-padding bottom-less">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
@@ -274,7 +255,7 @@
             <div class="team-items text-center">
                 <div class="row">
                     <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
+                    <div class="single-item col-lg-4 col-md-6">
                         <div class="item">
                             <div class="thumb">
                                 <img src="{{ asset('assets/img/doctors/1.jpg') }}" alt="Thumb">
@@ -297,7 +278,7 @@
                     </div>
                     <!-- End Single Item -->
                     <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
+                    <div class="single-item col-lg-4 col-md-6">
                         <div class="item">
                             <div class="thumb">
                                 <img src="{{ asset('assets/img/doctors/8.jpg') }}" alt="Thumb">
@@ -320,7 +301,7 @@
                     </div>
                     <!-- End Single Item -->
                     <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
+                    <div class="single-item col-lg-4 col-md-6">
                         <div class="item">
                             <div class="thumb">
                                 <img src="{{ asset('assets/img/doctors/6.jpg') }}" alt="Thumb">
@@ -342,37 +323,14 @@
                         </div>
                     </div>
                     <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('assets/img/doctors/4.jpg') }}" alt="Thumb">
-                                <div class="contact">
-                                    <ul>
-                                        <li>
-                                            <a href="#"><i class="fas fa-phone"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fas fa-comments"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h5>Prof. Matori Pulas</h5>
-                                <span>Medicine Specialists</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- End Team -->
 
     <!-- Start Testomonials
-                ============================================= -->
+                                                                                        ============================================= -->
     <div class="testimonials-area overflow-hidden carousel-shadow default-padding">
         <div class="container">
             <div class="row align-center">
