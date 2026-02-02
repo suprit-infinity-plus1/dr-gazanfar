@@ -16,6 +16,11 @@ class MainController extends Controller
         return view('about-us');
     }
 
+    public function qualifications()
+    {
+        return view('qualifications');
+    }
+
     public function doctors()
     {
         return view('doctors');
@@ -56,5 +61,15 @@ class MainController extends Controller
     public function kneeConditions()
     {
         return view('conditions');
+    }
+
+    public function scientificContributions()
+    {
+        return view('scientific-contributions');
+    }
+
+    public function awards()
+    {
+        return view('awards');
     }
 }

@@ -138,12 +138,11 @@
                             <a href="{{ route('about') }}" class="dropdown-toggle" data-toggle="dropdown">About
                                 Us</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Doctor’s
+                                <li><a href="{{ route('qualifications') }}">Doctor’s
                                         Professional Qualifications</a></li>
-                                <li><a href="#">Scientific
+                                <li><a href="{{ route('scientific-contributions') }}">Scientific
                                         Contributions and Excellence</a></li>
-                                <li><a href="#">Awards, Honours
-                                        &amp; Recognitions</a></li>
+                                <li><a href="{{ route('awards') }}">Awards, Honours &amp; Recognitions</a></li>
                                 <li><a href="#">Fellowships
                                         and Advanced Higher Training</a></li>
                                 <li><a href="#">Professional
