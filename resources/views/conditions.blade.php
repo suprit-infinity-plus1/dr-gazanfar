@@ -6,7 +6,7 @@
 @section('content')
 
     <!-- Start Breadcrumb
-                    ============================================= -->
+                        ============================================= -->
     <div class="breadcrumb-area bg-gradient text-center">
         <!-- Fixed BG -->
         <div class="fixed-bg" style="background-image: url({{ asset('assets/img/shape/9.png') }});"></div>
@@ -14,11 +14,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <h1>Treatments</h1>
+                    <h1>Conditions</h1>
                     <ul class="breadcrumb">
                         <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a></li>
                         <li><a href="#">Pages</a></li>
-                        <li class="active">Treatments</li>
+                        <li class="active">Conditions</li>
                     </ul>
                 </div>
             </div>
@@ -27,100 +27,41 @@
     <!-- End Breadcrumb -->
 
     <!-- Start Services
-                    ============================================= -->
+                        ============================================= -->
     <div class="department-area carousel-shadow default-padding bg-gray">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="department-items department-carousel owl-carousel owl-theme">
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('assets/img/departments/1.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Eye Care</a></h4>
-                                <p>
-                                    Sudden up my excuse to suffer ladies though or. Bachelor possible marianne one directly
-                                    confined the mention process.
-                                </p>
-                                <div class="head-of">
+                        @foreach (\App\Models\Condition::where('status', 1)->get() as $condition)
+                            <!-- Single Item -->
+                            <div class="item">
+                                <div class="thumb">
+                                    @if ($condition->icon)
+                                        <img src="{{ Storage::url($condition->icon) }}" alt="{{ $condition->title }}"
+                                            style="height: 250px; object-fit: cover;">
+                                    @else
+                                        <img src="{{ asset('assets/img/departments/1.jpg') }}" alt="Thumb">
+                                    @endif
+                                </div>
+                                <div class="info">
+                                    <h4><a href="#">{{ $condition->title }}</a></h4>
                                     <p>
-                                        <strong>Department head: </strong> Prof. Jonathom Doe
+                                        {!! Str::limit(strip_tags($condition->content), 100) !!}
                                     </p>
-                                </div>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('assets/img/departments/2.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Knee Treatment</a></h4>
-                                <p>
-                                    Sudden up my excuse to suffer ladies though or. Bachelor possible marianne one directly
-                                    confined the mention process.
-                                </p>
-                                <div class="head-of">
-                                    <p>
-                                        <strong>Department head: </strong> Prof. Jaknil Akia
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
+                                    <div class="head-of">
+                                        <p>
+                                            <strong>Department head: </strong>
+                                            {{ $condition->department_head ?? 'Dr. Gazanfar' }}
+                                        </p>
+                                    </div>
+                                    <div class="bottom">
+                                        <a href="#"><i class="fas fa-arrow-right"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('assets/img/departments/3.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Primary Care</a></h4>
-                                <p>
-                                    Sudden up my excuse to suffer ladies though or. Bachelor possible marianne one directly
-                                    confined the mention process.
-                                </p>
-                                <div class="head-of">
-                                    <p>
-                                        <strong>Department head: </strong> Prof. Shikla Brotha
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('assets/img/departments/4.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Orthopaedics</a></h4>
-                                <p>
-                                    Sudden up my excuse to suffer ladies though or. Bachelor possible marianne one directly
-                                    confined the mention process.
-                                </p>
-                                <div class="head-of">
-                                    <p>
-                                        <strong>Department head: </strong> Prof. Jaknil Akia
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->
+                            <!-- End Single Item -->
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -129,7 +70,7 @@
     <!-- End Services -->
 
     <!-- Start Fun Factor Area
-                    ============================================= -->
+                        ============================================= -->
     <div class="fun-factor-area half-bg-light-bottom bg-gray default-padding-bottom">
         <div class="container">
             <div class="fun-fact-items bg-gradient text-light text-center">
@@ -165,7 +106,7 @@
     <!-- End Fun Factor Area -->
 
     <!-- Start Consultation
-                    ============================================= -->
+                        ============================================= -->
     <div class="consultation-area default-padding-bottom">
         <div class="container">
             <div class="row align-center">
