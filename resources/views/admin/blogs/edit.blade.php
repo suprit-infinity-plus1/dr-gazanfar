@@ -36,6 +36,7 @@
                         <h3 class="text-lg font-bold text-gray-800 mb-4">SEO Configuration</h3>
 
                         <div class="grid grid-cols-1 gap-4">
+                            <!-- Existing Fields -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">SEO Title</label>
                                 <input type="text" name="seo_title" value="{{ old('seo_title', $blog->seo_title) }}"
@@ -58,9 +59,18 @@
                                     value="{{ old('canonical_url', $blog->canonical_url) }}"
                                     class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500 shadow-sm">
                             </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Schema Markup (JSON-LD)</label>
+                                <textarea name="schema" rows="5"
+                                    class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500 shadow-sm font-mono text-xs">{{ old('schema', $blog->schema) }}</textarea>
+                            </div>
+
+
                         </div>
                     </div>
+
                 </div>
+
 
                 <!-- Right Column -->
                 <div class="lg:col-span-1 space-y-6">
@@ -72,9 +82,11 @@
                             <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
                             <select name="status"
                                 class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500 shadow-sm">
-                                <option value="1" {{ old('status', $blog->status) == '1' ? 'selected' : '' }}>Published
+                                <option value="1" {{ old('status', $blog->status) == '1' ? 'selected' : '' }}>
+                                    Published
                                 </option>
-                                <option value="0" {{ old('status', $blog->status) == '0' ? 'selected' : '' }}>Draft
+                                <option value="0" {{ old('status', $blog->status) == '0' ? 'selected' : '' }}>
+                                    Draft
                                 </option>
                             </select>
                         </div>
@@ -89,6 +101,14 @@
                             </div>
                             <input type="file" name="cover_image" accept="image/*"
                                 class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+
+                            <div class="mt-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Cover Image Alt Text</label>
+                                <input type="text" name="cover_image_alt"
+                                    value="{{ old('cover_image_alt', $blog->cover_image_alt) }}"
+                                    class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500 shadow-sm"
+                                    placeholder="Describe the image">
+                            </div>
                         </div>
                     </div>
 
@@ -119,13 +139,15 @@
                             <div class="flex justify-between items-center mb-1">
                                 <label class="block text-sm font-medium text-gray-700">Tags</label>
                                 <button type="button" @click="openTagModal()"
-                                    class="text-xs text-blue-600 hover:underline">Manage Tags</button>
+                                    class="text-xs text-blue-600 hover:underline">Manage
+                                    Tags</button>
                             </div>
                             <select name="tags[]" id="tagsSelect" multiple
                                 class="w-full rounded-lg border-gray-300 shadow-sm">
                                 <template x-for="tag in tags" :key="tag.id">
                                     <option :value="tag.id" x-text="tag.name"
-                                        :selected="selectedTags.includes(tag.id)"></option>
+                                        :selected="selectedTags.includes(tag.id)">
+                                    </option>
                                 </template>
                             </select>
                         </div>
@@ -145,91 +167,160 @@
 
         <!-- Modals (Reused from Create View - ideally component, but copying logic for speed) -->
         <!-- Category Modal -->
-        <div x-show="showCategoryModal" style="display: none;" class="fixed inset-0 z-50 overflow-y-auto"
-            aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <div x-show="showCategoryModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-                    @click="showCategoryModal = false"></div>
-                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-                <div x-show="showCategoryModal"
-                    class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
-                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                        <div class="sm:flex sm:items-start">
-                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                                <h3 class="text-lg leading-6 font-medium text-gray-900">Manage Categories</h3>
-                                <div class="mt-4 p-4 bg-gray-50 rounded-lg">
-                                    <h4 class="text-sm font-semibold text-gray-700 mb-2">Add New Category</h4>
-                                    <div class="flex gap-2">
-                                        <input type="text" x-model="newCategoryName" placeholder="Category Name"
-                                            class="flex-1 rounded-md border-gray-300 shadow-sm sm:text-sm">
-                                        <button @click="createCategory()"
-                                            class="bg-blue-600 text-white px-4 py-2 rounded-md sm:text-sm">Add</button>
+        <!-- Category Modal -->
+        <template x-if="showCategoryModal">
+            <div class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+                aria-modal="true" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0">
+                <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                        @click="showCategoryModal = false"></div>
+                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                    <div
+                        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900">Manage Categories</h3>
+
+                                    <!-- Add/Edit Form -->
+                                    <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                                        <h4 class="text-sm font-semibold text-gray-700 mb-2"
+                                            x-text="editingCategory ? 'Edit Category' : 'Add New Category'"></h4>
+                                        <div class="flex gap-2">
+                                            <input type="text" x-model="newCategoryName" placeholder="Category Name"
+                                                class="flex-1 min-w-0 rounded-md border-gray-300 shadow-sm sm:text-sm"
+                                                @keydown.enter="editingCategory ? updateCategory() : createCategory()">
+
+                                            <!-- Add Button -->
+                                            <button x-show="!editingCategory" @click="createCategory()"
+                                                class="shrink-0 bg-blue-600 text-white px-4 py-2 rounded-md sm:text-sm hover:bg-blue-700 transition-colors">
+                                                Add
+                                            </button>
+
+                                            <!-- Update Button -->
+                                            <button x-show="editingCategory" @click="updateCategory()"
+                                                style="background-color: #059669;"
+                                                class="shrink-0 bg-green-600 text-white px-4 py-2 rounded-md sm:text-sm hover:bg-green-700 transition-colors">
+                                                Update
+                                            </button>
+
+                                            <!-- Cancel Button -->
+                                            <button x-show="editingCategory" @click="cancelCategoryEdit()"
+                                                class="shrink-0 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md sm:text-sm hover:bg-gray-50 transition-colors">
+                                                Cancel
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mt-4 max-h-60 overflow-y-auto">
-                                    <h4 class="text-sm font-semibold text-gray-700 mb-2">Existing Categories</h4>
-                                    <ul class="divide-y divide-gray-200">
-                                        <template x-for="cat in categories" :key="cat.id">
-                                            <li class="py-2 flex justify-between items-center">
-                                                <span x-text="cat.name" class="text-sm text-gray-700"></span>
-                                            </li>
-                                        </template>
-                                    </ul>
+
+                                    <!-- List -->
+                                    <div class="mt-4 max-h-60 overflow-y-auto">
+                                        <h4 class="text-sm font-semibold text-gray-700 mb-2">Existing Categories</h4>
+                                        <ul class="divide-y divide-gray-200">
+                                            <template x-for="cat in categories" :key="cat.id">
+                                                <li class="py-2 flex justify-between items-center group">
+                                                    <span x-text="cat.name" class="text-sm text-gray-700"></span>
+                                                    <div class="flex gap-2">
+                                                        <button @click="editCategory(cat)"
+                                                            class="text-blue-500 hover:text-blue-700 text-xs font-medium">
+                                                            Edit
+                                                        </button>
+                                                    </div>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button @click="showCategoryModal = false"
-                            class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 sm:ml-3 sm:w-auto sm:text-sm">Close</button>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button @click="showCategoryModal = false"
+                                class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 sm:ml-3 sm:w-auto sm:text-sm">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </template>
 
         <!-- Tag Modal -->
-        <div x-show="showTagModal" style="display: none;" class="fixed inset-0 z-50 overflow-y-auto" role="dialog"
-            aria-modal="true">
-            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <div x-show="showTagModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-                    @click="showTagModal = false"></div>
-                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-                <div x-show="showTagModal"
-                    class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
-                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                        <div class="sm:flex sm:items-start">
-                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                                <h3 class="text-lg leading-6 font-medium text-gray-900">Manage Tags</h3>
-                                <div class="mt-4 p-4 bg-gray-50 rounded-lg">
-                                    <h4 class="text-sm font-semibold text-gray-700 mb-2">Add New Tag</h4>
-                                    <div class="flex gap-2">
-                                        <input type="text" x-model="newTagName" placeholder="Tag Name"
-                                            class="flex-1 rounded-md border-gray-300 shadow-sm sm:text-sm">
-                                        <button @click="createTag()"
-                                            class="bg-blue-600 text-white px-4 py-2 rounded-md sm:text-sm">Add</button>
+        <template x-if="showTagModal">
+            <div class="fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true"
+                x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="showTagModal = false">
+                    </div>
+                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                    <div
+                        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900">Manage Tags</h3>
+
+                                    <!-- Add/Edit Form -->
+                                    <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                                        <h4 class="text-sm font-semibold text-gray-700 mb-2"
+                                            x-text="editingTag ? 'Edit Tag' : 'Add New Tag'"></h4>
+                                        <div class="flex gap-2">
+                                            <input type="text" x-model="newTagName" placeholder="Tag Name"
+                                                class="flex-1 min-w-0 rounded-md border-gray-300 shadow-sm sm:text-sm"
+                                                @keydown.enter="editingTag ? updateTag() : createTag()">
+
+                                            <!-- Add Button -->
+                                            <button x-show="!editingTag" @click="createTag()"
+                                                class="shrink-0 bg-blue-600 text-white px-4 py-2 rounded-md sm:text-sm hover:bg-blue-700 transition-colors">
+                                                Add
+                                            </button>
+
+                                            <!-- Update Button -->
+                                            <button x-show="editingTag" @click="updateTag()"
+                                                style="background-color: #059669;"
+                                                class="shrink-0 bg-green-600 text-white px-4 py-2 rounded-md sm:text-sm hover:bg-green-700 transition-colors">
+                                                Update
+                                            </button>
+
+                                            <!-- Cancel Button -->
+                                            <button x-show="editingTag" @click="cancelTagEdit()"
+                                                class="shrink-0 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md sm:text-sm hover:bg-gray-50 transition-colors">
+                                                Cancel
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mt-4 max-h-60 overflow-y-auto">
-                                    <h4 class="text-sm font-semibold text-gray-700 mb-2">Existing Tags</h4>
-                                    <div class="flex flex-wrap gap-2">
-                                        <template x-for="tag in tags" :key="tag.id">
-                                            <span
-                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                                                <span x-text="tag.name"></span>
-                                            </span>
-                                        </template>
+
+                                    <!-- List -->
+                                    <div class="mt-4 max-h-60 overflow-y-auto">
+                                        <h4 class="text-sm font-semibold text-gray-700 mb-2">Existing Tags</h4>
+                                        <div class="flex flex-col gap-2">
+                                            <template x-for="tag in tags" :key="tag.id">
+                                                <div
+                                                    class="flex justify-between items-center bg-gray-50 px-3 py-2 rounded">
+                                                    <span
+                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                                        <span x-text="tag.name"></span>
+                                                    </span>
+                                                    <button @click="editTag(tag)"
+                                                        class="text-blue-500 hover:text-blue-700 text-xs font-medium">
+                                                        Edit
+                                                    </button>
+                                                </div>
+                                            </template>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button @click="showTagModal = false"
-                            class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 sm:ml-3 sm:w-auto sm:text-sm">Close</button>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button @click="showTagModal = false"
+                                class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 sm:ml-3 sm:w-auto sm:text-sm">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </template>
 
     </div>
 
@@ -246,8 +337,12 @@
                     tags: {!! json_encode($tags) !!},
                     selectedCategory: '{{ old('category_id', $blog->category_id) }}',
                     selectedTags: {!! json_encode($blog->tags->pluck('id')) !!},
+
+                    // State
                     newCategoryName: '',
+                    editingCategory: null,
                     newTagName: '',
+                    editingTag: null,
 
                     init() {
                         // Init Select2 for tags
@@ -261,10 +356,14 @@
 
                     openCategoryModal() {
                         this.showCategoryModal = true;
+                        this.cancelCategoryEdit();
                     },
                     openTagModal() {
                         this.showTagModal = true;
+                        this.cancelTagEdit();
                     },
+
+                    // ================= CATEGORY LOGIC =================
 
                     async createCategory() {
                         if (!this.newCategoryName) return;
@@ -290,9 +389,55 @@
                             }
                         } catch (error) {
                             console.error(error);
-                            alert('Failed');
+                            alert('Failed to add category');
                         }
                     },
+
+                    editCategory(category) {
+                        this.editingCategory = category;
+                        this.newCategoryName = category.name;
+                    },
+
+                    cancelCategoryEdit() {
+                        this.editingCategory = null;
+                        this.newCategoryName = '';
+                    },
+
+                    async updateCategory() {
+                        if (!this.editingCategory || !this.newCategoryName) return;
+
+                        try {
+                            const url = `{{ url('admin/dashboard/blogs/categories/update') }}/${this.editingCategory.id}`;
+                            const response = await fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                        'content'),
+                                    'Accept': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    name: this.newCategoryName,
+                                    status: this.editingCategory.status ?? 1
+                                })
+                            });
+
+                            if (response.ok) {
+                                const index = this.categories.findIndex(c => c.id === this.editingCategory.id);
+                                if (index !== -1) {
+                                    this.categories[index].name = this.newCategoryName;
+                                }
+                                this.cancelCategoryEdit();
+                            } else {
+                                alert('Failed to update category');
+                            }
+                        } catch (error) {
+                            console.error('Error:', error);
+                            alert('Failed to update category');
+                        }
+                    },
+
+                    // ================= TAG LOGIC =================
 
                     async createTag() {
                         if (!this.newTagName) return;
@@ -318,7 +463,50 @@
                             }
                         } catch (error) {
                             console.error(error);
-                            alert('Failed');
+                            alert('Failed to add tag');
+                        }
+                    },
+
+                    editTag(tag) {
+                        this.editingTag = tag;
+                        this.newTagName = tag.name;
+                    },
+
+                    cancelTagEdit() {
+                        this.editingTag = null;
+                        this.newTagName = '';
+                    },
+
+                    async updateTag() {
+                        if (!this.editingTag || !this.newTagName) return;
+
+                        try {
+                            const url = `{{ url('admin/dashboard/blogs/tags/update') }}/${this.editingTag.id}`;
+                            const response = await fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                        'content'),
+                                    'Accept': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    name: this.newTagName
+                                })
+                            });
+
+                            if (response.ok) {
+                                const index = this.tags.findIndex(t => t.id === this.editingTag.id);
+                                if (index !== -1) {
+                                    this.tags[index].name = this.newTagName;
+                                }
+                                this.cancelTagEdit();
+                            } else {
+                                alert('Failed to update tag');
+                            }
+                        } catch (error) {
+                            console.error('Error:', error);
+                            alert('Failed to update tag');
                         }
                     }
                 }

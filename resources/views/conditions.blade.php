@@ -6,7 +6,7 @@
 @section('content')
 
     <!-- Start Breadcrumb
-                        ============================================= -->
+                                ============================================= -->
     <div class="breadcrumb-area bg-gradient text-center">
         <!-- Fixed BG -->
         <div class="fixed-bg" style="background-image: url({{ asset('assets/img/shape/9.png') }});"></div>
@@ -27,41 +27,47 @@
     <!-- End Breadcrumb -->
 
     <!-- Start Services
-                        ============================================= -->
+                                ============================================= -->
     <div class="department-area carousel-shadow default-padding bg-gray">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="department-items department-carousel owl-carousel owl-theme">
-                        @foreach (\App\Models\Condition::where('status', 1)->get() as $condition)
-                            <!-- Single Item -->
-                            <div class="item">
-                                <div class="thumb">
-                                    @if ($condition->icon)
-                                        <img src="{{ Storage::url($condition->icon) }}" alt="{{ $condition->title }}"
-                                            style="height: 250px; object-fit: cover;">
-                                    @else
-                                        <img src="{{ asset('assets/img/departments/1.jpg') }}" alt="Thumb">
-                                    @endif
-                                </div>
-                                <div class="info">
-                                    <h4><a href="#">{{ $condition->title }}</a></h4>
-                                    <p>
-                                        {!! Str::limit(strip_tags($condition->content), 100) !!}
-                                    </p>
-                                    <div class="head-of">
+                        @if ($conditions->count() > 0)
+                            @foreach ($conditions as $condition)
+                                <!-- Single Item -->
+                                <div class="item">
+                                    <div class="thumb">
+                                        @if ($condition->icon)
+                                            <img src="{{ Storage::url($condition->icon) }}" alt="{{ $condition->title }}"
+                                                style="height: 250px; object-fit: cover;">
+                                        @else
+                                            <img src="{{ asset('assets/img/departments/1.jpg') }}" alt="Thumb">
+                                        @endif
+                                    </div>
+                                    <div class="info">
+                                        <h4><a href="#">{{ $condition->title }}</a></h4>
                                         <p>
-                                            <strong>Department head: </strong>
-                                            {{ $condition->department_head ?? 'Dr. Gazanfar' }}
+                                            {!! Str::limit(strip_tags($condition->content), 100) !!}
                                         </p>
-                                    </div>
-                                    <div class="bottom">
-                                        <a href="#"><i class="fas fa-arrow-right"></i></a>
+                                        <div class="head-of">
+                                            <p>
+                                                <strong>Department head: </strong>
+                                                {{ $condition->department_head ?? 'Dr. Gazanfar' }}
+                                            </p>
+                                        </div>
+                                        <div class="bottom">
+                                            <a href="#"><i class="fas fa-arrow-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- End Single Item -->
+                            @endforeach
+                        @else
+                            <div class="col-lg-12 text-center">
+                                <p>No items found.</p>
                             </div>
-                            <!-- End Single Item -->
-                        @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -70,7 +76,7 @@
     <!-- End Services -->
 
     <!-- Start Fun Factor Area
-                        ============================================= -->
+                                ============================================= -->
     <div class="fun-factor-area half-bg-light-bottom bg-gray default-padding-bottom">
         <div class="container">
             <div class="fun-fact-items bg-gradient text-light text-center">
@@ -106,7 +112,7 @@
     <!-- End Fun Factor Area -->
 
     <!-- Start Consultation
-                        ============================================= -->
+                                ============================================= -->
     <div class="consultation-area default-padding-bottom">
         <div class="container">
             <div class="row align-center">

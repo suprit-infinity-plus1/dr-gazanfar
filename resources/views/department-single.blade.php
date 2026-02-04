@@ -1,216 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <!-- ========== Meta Tags ========== -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Healdi - Medical & Health Template">
+@section('title', 'Knee Osteoarthritis - Dr. Gazanfar')
+@section('meta_description', 'Treatment for Knee Osteoarthritis by Dr. Gazanfar.')
 
-    <!-- ========== Page Title ========== -->
-    <title>Healdi - Medical & Health Template</title>
+@section('content')
 
-    <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
-
-    <!-- ========== Start Stylesheet ========== -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/bootsnav.css">
-    <link rel="stylesheet" href="assets/css/flaticon-set.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <!-- ========== End Stylesheet ========== -->
-
-</head>
-
-<body>
-
-    <!-- Preloader Start -->
-    <div class="se-pre-con"></div>
-    <!-- Preloader Ends -->
-
-    <!-- Start Header Top
-    ============================================= -->
-    <div class="top-bar-area inc-pad inc-border">
-        <div class="container">
-            <div class="row align-center">
-                <div class="col-lg-6 info">
-                    <p>
-                        !Global update on Coronavirus disease <a href="#">(COVID-19)</a> Pandemic
-                    </p>
-                </div>
-                <div class="col-lg-6 text-end item-flex">
-                    <div class="info">
-                        <ul>
-                            <li>
-                                <a href="#">Online Appoinment</a>
-                            </li>
-                            <li>
-                                <a href="#">WebMail</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="social">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Header Top -->
-
-
-    <!-- Header
-    ============================================= -->
-    <header>
-        <!-- Start Navigation -->
-        <nav class="navbar mobile-sidenav navbar-sticky navbar-default validnavs dark">
-
-            <div class="container d-flex justify-content-between align-items-center">
-
-
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" href="index.html">
-                        <img src="assets/img/logo1.png" class="logo" alt="Logo">
-                    </a>
-                </div>
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-
-                    <div class="collapse-header">
-                        <img src="assets/img/logo1.png" alt="Logo">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                            <i class="fa fa-times"></i>
-                        </button>
-                    </div>
-
-                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index-1.html">Home Version One</a></li>
-                                <li><a href="index-2.html">Home Version Two</a></li>
-                                <li><a href="index-3.html">Home Version Three</a></li>
-                                <li><a href="index-4.html">Home Version Four</a></li>
-                                <li><a href="index-5.html">Home Version Five <span class="badge">New</span></a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact.html">Get in Touch</a></li>
-                                <li><a href="404.html">Error Page</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Departments</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="departments.html">Department Version One</a></li>
-                                <li><a href="departments-2.html">Department Version Two</a></li>
-                                <li><a href="departments-3.html">Department Version Three</a></li>
-                                <li><a href="departments-4.html">Department Version Four</a></li>
-                                <li><a href="department-single.html">Department Single</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Doctors</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="doctors.html">Doctors Version One</a></li>
-                                <li><a href="doctors-2.html">Doctors Version Two</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="blog-standard.html">Blog Standard</a></li>
-                                <li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
-                                <li><a href="blog-2-colum.html">Blog Grid Two Colum</a></li>
-                                <li><a href="blog-3-colum.html">Blog Grid Three Colum</a></li>
-                                <li><a href="blog-single.html">Blog Single</a></li>
-                                <li><a href="blog-single-with-sidebar.html">Blog Single With Sidebar</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="contact.html">Contact</a>
-                        </li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-
-                <!-- Start Atribute Navigation -->
-                <div class="attr-right">
-                    <!-- Start Atribute Navigation -->
-                    <div class="attr-nav">
-                        <ul>
-                            <li class="contact">
-                                <div class="call">
-                                    <div class="icon">
-                                        <i class="fas fa-stethoscope"></i>
-                                    </div>
-                                    <div class="info">
-                                        <p>Have any Questions?</p>
-                                        <h5><a href="mailto:info@crysta.com">info@bestup.com</a></h5>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Atribute Navigation -->
-                </div>
-                <!-- End Atribute Navigation -->
-
-            </div>
-            <!-- Overlay screen for menu -->
-            <div class="overlay-screen"></div>
-            <!-- End Overlay screen for menu -->
-        </nav>
-        <!-- End Navigation -->
-    </header>
-    <!-- End Header -->
-
-    <!-- Start Breadcrumb
-    ============================================= -->
+    <!-- Start Breadcrumb -->
     <div class="breadcrumb-area bg-gradient text-center">
         <!-- Fixed BG -->
-        <div class="fixed-bg" style="background-image: url(assets/img/shape/9.png);"></div>
+        <div class="fixed-bg" style="background-image: url({{ asset('assets/img/shape/9.png') }});"></div>
         <!-- Fixed BG -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <h1>Department Single</h1>
+                    <h1>Knee Osteoarthritis</h1>
                     <ul class="breadcrumb">
-                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#">Department</a></li>
-                        <li class="active">Single</li>
+                        <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#">Conditions</a></li>
+                        <li><a href="#">Knee</a></li>
+                        <li class="active">Knee Osteoarthritis</li>
                     </ul>
                 </div>
             </div>
@@ -218,297 +26,196 @@
     </div>
     <!-- End Breadcrumb -->
 
-    <!-- Start Department Single
-    ============================================= -->
-    <div class="department-single-area overflow-hidden default-padding">
+    <!-- Start Department Single -->
+    <div class="department-single-area default-padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 info">
-                    <div class="thumb">
-                        <img src="assets/img/departments/7.jpg" alt="Thumb">
-                        <div class="title">
-                            <h3>Knee Treatment and Surgery</h3>
-                            <span>Available Doctors: 57</span>
+                <!-- Main Content (Centered) -->
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="department-single-content">
+
+                        <!-- Breadcrumb-like top text -->
+                        <div class="mb-3 text-muted" style="font-size: 0.9rem;">
+                            Dr. Gazanfar, Orthopaedic Surgeon // Conditions // Knee // <span class="text-theme">Knee
+                                Osteoarthritis</span>
                         </div>
+
+                        <!-- Main H1 -->
+                        <h1 class="mb-4" style="font-size: 2.2rem; font-weight: 700; line-height: 1.3;">
+                            Knee Osteoarthritis treatment by Leading Knee Surgeon in Kashmir
+                        </h1>
+
+                        <!-- Thumb -->
+                        <div class="thumb mb-4">
+                            <img src="{{ asset('assets/img/departments/1.jpg') }}" alt="Thumb"
+                                style="width: 100%; border-radius: 8px;">
+                        </div>
+
+                        <!-- Intro Text -->
+                        <div class="intro-text mb-5">
+                            <p class="lead" style="font-size: 1.1rem; color: #555;">
+                                Knee osteoarthritis is a degenerative condition in which the cartilage covering the ends of
+                                bone in the knee joint wears away, causing pain, swelling, stiffness and limited movement.
+                                <strong>Dr. Gazanfar</strong>, a specialist knee and hip surgeon, offers expert evaluation
+                                and advanced treatment options including minimally invasive arthroplasty and
+                                joint-preserving care to restore function and relieve discomfort.
+                            </p>
+                            <div class="mt-4 p-4 bg-gray rounded border-l-4 border-theme">
+                                <h5 class="mb-2">Ready to move specifically?</h5>
+                                <p class="mb-0">Contact Dr. Gazanfar’s team for an appointment today to discuss your knee
+                                    health. <a href="tel:+919820727046" class="text-theme font-bold">Call +91 98207
+                                        27046</a></p>
+                            </div>
+                        </div>
+
+                        <!-- Specific Sections -->
+                        <div id="what-is" class="content-section mb-5 pt-4">
+                            <h2>What is Knee Osteoarthritis?</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat.
+                            </p>
+                        </div>
+
+                        <div id="causes" class="content-section mb-5 pt-4">
+                            <h2>Causes and Risk Factors</h2>
+                            <p>Several factors can increase the risk of developing osteoarthritis of the knee:</p>
+                            <ul>
+                                <li><strong>Age:</strong> The ability of cartilage to heal decreases as people get older.
+                                </li>
+                                <li><strong>Weight:</strong> Weight increases pressure on all the joints, especially the
+                                    knees.</li>
+                                <li><strong>Heredity:</strong> This includes genetic mutations that might make a person more
+                                    likely to develop osteoarthritis of the knee.</li>
+                                <li><strong>Gender:</strong> Women are more likely than men to develop osteoarthritis.</li>
+                            </ul>
+                        </div>
+
+                        <div id="diagnosis" class="content-section mb-5 pt-4">
+                            <h2>Diagnosis</h2>
+                            <p>
+                                The diagnosis of knee osteoarthritis begins with a physical examination by Dr. Gazanfar. He
+                                will also look into your medical history and note any symptoms. X-rays are typically used to
+                                confirm the diagnosis and verify the extent of the damage. MRI scans may be ordered to check
+                                for problems with the soft tissues of your knee.
+                            </p>
+                        </div>
+
+                        <div id="treatment" class="content-section mb-5 pt-4">
+                            <h2>Treatment Options</h2>
+                            <p>The primary goal of treating knee osteoarthritis is to relieve pain and return mobility. The
+                                treatment plan will depend on the stage of the disease.</p>
+                        </div>
+
+                        <div id="medications" class="content-section mb-5 pt-4">
+                            <h3>Medications</h3>
+                            <p>
+                                Several types of medications are useful in treating osteoarthritis of the knee. Because some
+                                people respond differently to medications, Dr. Gazanfar or a physical therapist can help
+                                develop an individualized exercise program that meets your needs and lifestyle.
+                            </p>
+                        </div>
+
+                        <div id="lifestyle" class="content-section mb-5 pt-4">
+                            <h3>Lifestyle Modifications</h3>
+                            <p>Some lifestyle changes can protect your knee joint and slow the progress of osteoarthritis:
+                            </p>
+                            <ul class="check-list">
+                                <li>Minimizing activities that aggravate the condition, such as climbing stairs.</li>
+                                <li>Switching from high-impact activities (like jogging or tennis) to lower impact
+                                    activities (like swimming or cycling).</li>
+                                <li>Losing weight to reduce stress on the knee joint.</li>
+                            </ul>
+                        </div>
+
+                        <div id="therapy" class="content-section mb-5 pt-4">
+                            <h3>Physical Therapy</h3>
+                            <p>
+                                Specific exercises can help increase range of motion and flexibility, as well as strengthen
+                                the muscles in your leg. Dr. Gazanfar or a physical therapist can help develop an
+                                individualized exercise program that meets your needs and lifestyle.
+                            </p>
+                        </div>
+
+                        <div id="surgery" class="content-section mb-5 pt-4">
+                            <h3>Surgery</h3>
+                            <p>
+                                If your pain from arthritis causes disability and is not relieved with nonsurgical
+                                treatment, Dr. Gazanfar may recommend surgery. Options include Arthroscopy, Osteotomy, or
+                                Total or Partial Knee Replacement.
+                            </p>
+                        </div>
+
                     </div>
-                    <p>
-                        Savings her pleased are several started females met. Short her not among being any. Thing of
-                        judge fruit charm views do. Miles mr an forty along as he. She education get middleton day
-                        agreement performed preserved unwilling. Do however as pleased offence outward beloved by
-                        present. By outward neither he so covered amiable greater. Juvenile proposal betrayed he an
-                        informed weddings followed. Precaution day see imprudence sympathize principles. At full leaf
-                        give quit to in they up.
-                    </p>
-                    <a class="btn btn-md btn-gradient" href="#"><i class="fas fa-file-pdf"></i> Download
-                        Docs</a>
-                    <h4>Services features</h4>
-                    <ul>
-                        <li>Stretchers and Stretcher Accessories</li>
-                        <li>International Drug Database</li>
-                        <li>Cushions and Mattresses</li>
-                        <li>Cholesterol and lipid tests</li>
-                        <li>Critical Care Medicine Specialists</li>
-                        <li>Emergency Assistance</li>
-                    </ul>
-                    <p>
-                        Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac
-                        surgeon. A cardiac surgeon opens the chest and performs heart surgery. A cardiologist
-                        specializes in diagnosing and treating diseases of the cardiovascular system. The cardiologist
-                        will carry out tests, and they may some do procedures, such as heart catheterizations,
-                        angioplasty, or inserting a pacemaker. Heart disease relates specifically to the heart, while
-                        cardiovascular disease affects the heart, the blood vessels, or both. Early detection and early
-                        treatment are the keys in beating cardiovascular diseases- the number one cause of disability
-                        and death for both men and women accounting for one third of deaths. At Medify, our
-                        interdisciplinary team of heart specialists has developed a powerful program for identifying,
-                        treating and managing heart and vascular conditions for patients of all ages. We’ve built our
-                        stellar reputation upon the premise that minutes always count – whether it is improving your
-                        heart health, providing a diagnosis or urgent surgical intervention, our award winning team of
-                        renowned surgeons, physicians, researchers.
-                    </p>
                 </div>
-                <div class="col-lg-4 sidebar">
+            </div>
 
-                    <!-- Single Widget -->
-                    <div class="widget link">
-                        <div class="title">
-                            <h4>Our Departments</h4>
-                        </div>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fas fa-angle-right"></i> Medecine and Health</a>
-                            </li>
-                            <li class="active">
-                                <a href="#"><i class="fas fa-angle-right"></i> Knee Treatment and Surgery</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fas fa-angle-right"></i> Hip Treatment</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fas fa-angle-right"></i> Children Chare</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fas fa-angle-right"></i> Nuclear magnetic</a>
-                            </li>
-                        </ul>
+            <!-- Related Treatments Section -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="site-heading text-center">
+                        <h2>Related Treatments</h2>
+                        <div class="devider"></div>
                     </div>
-                    <!-- End Single Widget -->
-
-                    <!-- Single Widget -->
-                    <div class="widget appoinment">
-                        <div class="title">
-                            <h4>Make an Appointment</h4>
-                        </div>
-                        <div class="appoinment-box">
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input class="form-control" id="name" name="name"
-                                                placeholder="Name" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <select>
-                                                <option value="1">Male</option>
-                                                <option value="2">Female</option>
-                                                <option value="3">Child</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <select>
-                                                <option value="1">Department</option>
-                                                <option value="2">Medecine</option>
-                                                <option value="4">Knee Treatment</option>
-                                                <option value="5">Traumatology</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group comments">
-                                            <textarea class="form-control" id="comments" name="comments" placeholder="Your Message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button type="submit" name="submit" id="submit">
-                                            Submit Query <i class="fa fa-paper-plane"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- End Single Widget -->
                 </div>
-                <!-- End Widget Items -->
+            </div>
 
+            <div class="row">
+                <!-- Single Item -->
+                <div class="col-lg-4 col-md-6 single-item">
+                    <div class="item">
+                        <div class="thumb">
+                            <img src="{{ asset('assets/img/departments/2.jpg') }}" alt="Thumb"
+                                style="width: 100%; border-radius: 8px;">
+                        </div>
+                        <div class="info mt-30">
+                            <h4><a href="#">Knee Replacement</a></h4>
+                            <p>
+                                Surgical procedure to replace the weight-bearing surfaces of the knee joint to relieve pain
+                                and disability.
+                            </p>
+                            <a href="#" class="btn btn-sm btn-theme border btn-md">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Item -->
+                <div class="col-lg-4 col-md-6 single-item">
+                    <div class="item">
+                        <div class="thumb">
+                            <img src="{{ asset('assets/img/departments/3.jpg') }}" alt="Thumb"
+                                style="width: 100%; border-radius: 8px;">
+                        </div>
+                        <div class="info mt-30">
+                            <h4><a href="#">ACL Reconstruction</a></h4>
+                            <p>
+                                A surgical tissue graft replacement of the anterior cruciate ligament, located in the knee,
+                                to restore its function.
+                            </p>
+                            <a href="#" class="btn btn-sm btn-theme border btn-md">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Item -->
+                <div class="col-lg-4 col-md-6 single-item">
+                    <div class="item">
+                        <div class="thumb">
+                            <img src="{{ asset('assets/img/departments/4.jpg') }}" alt="Thumb"
+                                style="width: 100%; border-radius: 8px;">
+                        </div>
+                        <div class="info mt-30">
+                            <h4><a href="#">Meniscus Repair</a></h4>
+                            <p>
+                                Minimally invasive surgical procedure to repair a torn meniscus, the cartilage that cushions
+                                the knee joint.
+                            </p>
+                            <a href="#" class="btn btn-sm btn-theme border btn-md">Read More</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- End Department Single -->
 
-    <!-- Start Footer
-    ============================================= -->
-    <footer class="bg-dark text-light">
-        <div class="container">
-            <div class="f-items default-padding">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 item">
-                        <div class="f-item about">
-                            <img src="assets/img/logo1-light.png" alt="Logo">
-                            <p>
-                                Required honoured trifling eat pleasure man relation. Assurance yet bed was improving
-                                furniture man.
-                            </p>
-                            <div class="address">
-                                <ul>
-                                    <li>
-                                        <div class="icon">
-                                            <i class="flaticon-email"></i>
-                                        </div>
-                                        <div class="info">
-                                            <h5>Email:</h5>
-                                            <span>support@validtemplates.com</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <i class="flaticon-call"></i>
-                                        </div>
-                                        <div class="info">
-                                            <h5>Phone:</h5>
-                                            <span>+44-20-7328-4499</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="single-item col-lg-2 col-md-6 item">
-                        <div class="f-item link">
-                            <h4 class="widget-title">Department</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">Medecine & Health</a>
-                                </li>
-                                <li>
-                                    <a href="#">Knee Treatment</a>
-                                </li>
-                                <li>
-                                    <a href="#">Hip Treatment</a>
-                                </li>
-                                <li>
-                                    <a href="#">Children Chare</a>
-                                </li>
-                                <li>
-                                    <a href="#">Traumatology</a>
-                                </li>
-                                <li>
-                                    <a href="#">X-ray</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="single-item col-lg-2 col-md-6 item">
-                        <div class="f-item link">
-                            <h4 class="widget-title">Usefull Links</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">Ambulance</a>
-                                </li>
-                                <li>
-                                    <a href="#">Emergency</a>
-                                </li>
-                                <li>
-                                    <a href="#">Blog</a>
-                                </li>
-                                <li>
-                                    <a href="#">Project</a>
-                                </li>
-                                <li>
-                                    <a href="#">About Us</a>
-                                </li>
-                                <li>
-                                    <a href="#">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="single-item col-lg-4 col-md-6 item">
-                        <div class="f-item branches">
-                            <div class="branches">
-                                <ul>
-                                    <li>
-                                        <strong>USA Branches:</strong>
-                                        <span>4992 Bryan Avenue, Prior Lake, Minnesota <br> Phone: 651-379-4698</span>
-                                    </li>
-                                    <li>
-                                        <strong>Central Branches:</strong>
-                                        <span>2001 Kia Magentis, Prior Lake, Minnesota <br> Phone: 651-379-4698</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- Start Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row align-center">
-                    <div class="col-lg-6">
-                        <p>Copyright &copy; 2025. Designed by <a href="#">validtemplatess</a></p>
-                    </div>
-                    <div class="col-lg-6 text-end social">
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-youtube"></i> Youtube</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Bottom -->
-    </footer>
-    <!-- End Footer -->
-
-    <!-- jQuery Frameworks
-    ============================================= -->
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/bootsnav.js"></script>
-    <script src="assets/js/circle-progress.js"></script>
-    <script src="assets/js/count-to.js"></script>
-    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <script src="assets/js/jquery.appear.js"></script>
-    <script src="assets/js/jquery.backgroundMove.js"></script>
-    <script src="assets/js/jquery.easing.min.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/jquery.nice-select.min.js"></script>
-    <script src="assets/js/loopcounter.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/progress-bar.min.js"></script>
-    <script src="assets/js/progresscircle.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+@endsection

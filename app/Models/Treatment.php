@@ -18,7 +18,8 @@ class Treatment extends Model
         'seo_title',
         'meta_description',
         'meta_keywords',
-        'status'
+        'status',
+        'type'
     ];
 
     protected $casts = [

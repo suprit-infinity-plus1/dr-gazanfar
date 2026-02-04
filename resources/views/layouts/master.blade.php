@@ -13,17 +13,20 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('title', 'Dr. Gazanfar')">
-    <meta property="og:description" content="@yield('meta_description', 'Dr. Gazanfar')">
-    <meta property="og:image" content="{{ asset('assets/img/logo1.png') }}">
+    <meta property="og:url" content="@yield('canonical_url', url()->current())">
+    <meta property="og:title" content="@yield('og_title', View::getSection('title') ?? 'Dr. Gazanfar')">
+    <meta property="og:description" content="@yield('og_description', View::getSection('meta_description') ?? 'Dr. Gazanfar')">
+    <meta property="og:image" content="@yield('og_image', asset('assets/img/logo1.png'))">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('title', 'Dr. Gazanfar')">
-    <meta property="twitter:description" content="@yield('meta_description', 'Dr. Gazanfar')">
-    <meta property="twitter:image" content="{{ asset('assets/img/logo1.png') }}">
+    <meta property="twitter:url" content="@yield('canonical_url', url()->current())">
+    <meta property="twitter:title" content="@yield('twitter_title', View::getSection('title') ?? 'Dr. Gazanfar')">
+    <meta property="twitter:description" content="@yield('twitter_description', View::getSection('meta_description') ?? 'Dr. Gazanfar')">
+    <meta property="twitter:image" content="@yield('twitter_image', asset('assets/img/logo1.png'))">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="@yield('canonical_url', url()->current())">
 
     <!-- ========== Page Title ========== -->
     <title>@yield('title', 'Dr. Gazanfar')</title>
@@ -378,6 +381,8 @@
     <script src="{{ asset('assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    @stack('scripts')
 
 </body>
 

@@ -26,6 +26,20 @@
                         class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500 shadow-sm">
                 </div>
 
+                <!-- Type -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Type <span
+                            class="text-red-500">*</span></label>
+                    <select name="type" required
+                        class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500 shadow-sm">
+                        <option value="" disabled selected>Select Type</option>
+                        <option value="knee" {{ old('type', $treatment->type ?? '') == 'knee' ? 'selected' : '' }}>Knee
+                        </option>
+                        <option value="hip" {{ old('type', $treatment->type ?? '') == 'hip' ? 'selected' : '' }}>Hip
+                        </option>
+                    </select>
+                </div>
+
                 <!-- Icon -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Icon/Image</label>

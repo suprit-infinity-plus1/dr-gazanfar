@@ -18,6 +18,7 @@ Route::get('/gallery', [MainController::class, 'gallery'])->name('gallery');
 // Blog Routes (Frontend)
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
 Route::get('/blogs/category/{slug}', [BlogController::class, 'allBlogs'])->name('all-blogs');
+Route::get('/blogs/tag/{slug}', [BlogController::class, 'blogsByTag'])->name('blogs.tag');
 Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
@@ -25,6 +26,9 @@ Route::get('/hip-treatments', [MainController::class, 'hipTreatments'])->name('h
 Route::get('/knee-treatments', [MainController::class, 'kneeTreatments'])->name('knee-treatments');
 Route::get('/hip-conditions', [MainController::class, 'hipConditions'])->name('hip-conditions');
 Route::get('/knee-conditions', [MainController::class, 'kneeConditions'])->name('knee-conditions');
+Route::get('/dummy-department', function () {
+    return view('department-single');
+});
 Route::get('/awards', [MainController::class, 'awards'])->name('awards');
 
 // Admin Routes (Protected)

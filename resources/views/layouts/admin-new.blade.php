@@ -22,7 +22,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- AlpineJS -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <!-- AlpineJS loaded via Vite app.js -->
 </head>
 
 <body class="bg-gray-50 font-sans antialiased text-gray-800">

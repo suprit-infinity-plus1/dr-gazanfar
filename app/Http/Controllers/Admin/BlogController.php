@@ -80,6 +80,8 @@ class BlogController extends Controller
             $coverImagePath = $request->file('cover_image')->store('uploads/blogs', 'public');
         }
 
+
+
         // Set author
         $author = $request->author ?? (auth()->user()->name ?? 'Admin');
 
@@ -186,6 +188,8 @@ class BlogController extends Controller
 
             $blog->cover_image = $request->file('cover_image')->store('uploads/blogs', 'public');
         }
+
+
 
         // Update published_at if status changed to published
         if ($request->status && !$blog->published_at) {
@@ -334,6 +338,14 @@ class BlogController extends Controller
             'status' => $request->status,
         ]);
 
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Category updated successfully!',
+                'category' => $category
+            ]);
+        }
+
         return redirect()->route('admin.blogs.categories')->with('success', 'Category updated successfully!');
     }
 
@@ -436,6 +448,14 @@ class BlogController extends Controller
             'name' => $request->name,
             'slug' => $slug,
         ]);
+
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Tag updated successfully!',
+                'tag' => $tag
+            ]);
+        }
 
         return redirect()->route('admin.blogs.tags')->with('success', 'Tag updated successfully!');
     }

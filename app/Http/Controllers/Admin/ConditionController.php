@@ -31,6 +31,7 @@ class ConditionController extends Controller
             'seo_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',
             'meta_keywords' => 'nullable|string',
+            'type' => 'required|in:knee,hip',
         ]);
 
         $slug = Str::slug($request->title);
@@ -57,6 +58,7 @@ class ConditionController extends Controller
             'meta_description' => $request->meta_description,
             'meta_keywords' => $request->meta_keywords,
             'status' => $request->status ?? 1,
+            'type' => $request->type,
         ]);
 
         return redirect()->route('admin.conditions')->with('success', 'Condition created successfully!');
@@ -75,6 +77,7 @@ class ConditionController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'icon' => 'nullable|image|max:2048',
+            'type' => 'required|in:knee,hip',
         ]);
 
         if ($request->title !== $condition->title) {
@@ -104,6 +107,7 @@ class ConditionController extends Controller
             'meta_description' => $request->meta_description,
             'meta_keywords' => $request->meta_keywords,
             'status' => $request->status ?? 1,
+            'type' => $request->type,
         ]);
 
         return redirect()->route('admin.conditions')->with('success', 'Condition updated successfully!');

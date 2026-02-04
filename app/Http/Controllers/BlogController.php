@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -11,25 +12,29 @@ class BlogController extends Controller
     /**
      * Display all blogs grouped by category
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = BlogCategory::active()
-            ->withCount('blogs')
-            ->with([
-                'blogs' => function ($query) {
-                    $query->where('status', true)
-                        ->orderBy('published_at', 'desc')
-                        ->limit(6);
-                }
-            ])
-            ->get();
+        // Common Data for Sidebar
+        $categories = BlogCategory::withCount('blogs')->get();
+        $tags = Tag::all();
+        $recentBlogs = Blog::where('status', true)->orderBy('published_at', 'desc')->limit(3)->get();
 
-        $latestBlogs = Blog::where('status', true)
-            ->with(['category', 'tags'])
+        // Search Logic
+        $query = Blog::where('status', true);
+
+        if ($request->has('text')) {
+            $searchTerm = $request->text;
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('title', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('content', 'LIKE', "%{$searchTerm}%");
+            });
+        }
+
+        $latestBlogs = $query->with(['category', 'tags'])
             ->orderBy('published_at', 'desc')
             ->paginate(12);
 
-        return view('blogs', compact('categories', 'latestBlogs'));
+        return view('blogs', compact('categories', 'latestBlogs', 'tags', 'recentBlogs'));
     }
 
     /**
@@ -37,6 +42,11 @@ class BlogController extends Controller
      */
     public function allBlogs($slug)
     {
+        // Common Data for Sidebar
+        $categories = BlogCategory::withCount('blogs')->get();
+        $tags = Tag::all();
+        $recentBlogs = Blog::where('status', true)->orderBy('published_at', 'desc')->limit(3)->get();
+
         $category = BlogCategory::where('slug', $slug)->firstOrFail();
 
         $blogs = Blog::where('status', true)
@@ -45,7 +55,34 @@ class BlogController extends Controller
             ->orderBy('published_at', 'desc')
             ->paginate(12);
 
-        return view('all-blogs', compact('category', 'blogs'));
+        $title = 'Category: ' . $category->name;
+
+        return view('all-blogs', compact('category', 'blogs', 'categories', 'tags', 'recentBlogs', 'title'));
+    }
+
+    /**
+     * Display all blogs with a specific tag
+     */
+    public function blogsByTag($slug)
+    {
+        // Common Data for Sidebar
+        $categories = BlogCategory::withCount('blogs')->get();
+        $tags = Tag::all();
+        $recentBlogs = Blog::where('status', true)->orderBy('published_at', 'desc')->limit(3)->get();
+
+        $tag = Tag::where('slug', $slug)->firstOrFail();
+
+        $blogs = Blog::whereHas('tags', function ($q) use ($tag) {
+            $q->where('tags.id', $tag->id);
+        })
+            ->where('status', true)
+            ->with(['category', 'tags'])
+            ->orderBy('published_at', 'desc')
+            ->paginate(12);
+
+        $title = 'Tag: ' . $tag->name;
+
+        return view('all-blogs', compact('tag', 'blogs', 'categories', 'tags', 'recentBlogs', 'title'));
     }
 
     /**
@@ -53,6 +90,11 @@ class BlogController extends Controller
      */
     public function show($slug)
     {
+        // Common Data for Sidebar
+        $categories = BlogCategory::withCount('blogs')->get();
+        $tags = Tag::all();
+        $recentBlogs = Blog::where('status', true)->orderBy('published_at', 'desc')->limit(3)->get();
+
         $blog = Blog::where('slug', $slug)
             ->where('status', true)
             ->with(['category', 'tags', 'faqs'])
@@ -66,9 +108,9 @@ class BlogController extends Controller
             ->where('category_id', $blog->category_id)
             ->where('id', '!=', $blog->id)
             ->orderBy('published_at', 'desc')
-            ->limit(6)
+            ->limit(9)
             ->get();
 
-        return view('blog-details', compact('blog', 'relatedBlogs'));
+        return view('blog-details', compact('blog', 'relatedBlogs', 'categories', 'tags', 'recentBlogs'));
     }
 }

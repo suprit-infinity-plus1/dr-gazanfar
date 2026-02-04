@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Tag;
+use App\Models\Condition;
+use App\Models\Treatment;
 
 class MainController extends Controller
 {
@@ -61,19 +63,23 @@ class MainController extends Controller
 
     public function hipTreatments()
     {
-        return view('treatments-2');
+        $treatments = Treatment::where('status', 1)->where('type', 'hip')->get();
+        return view('treatments-2', compact('treatments'));
     }
     public function kneeTreatments()
     {
-        return view('treatments-2');
+        $treatments = Treatment::where('status', 1)->where('type', 'knee')->get();
+        return view('treatments-2', compact('treatments'));
     }
     public function hipConditions()
     {
-        return view('conditions');
+        $conditions = Condition::where('status', 1)->where('type', 'hip')->get();
+        return view('conditions', compact('conditions'));
     }
     public function kneeConditions()
     {
-        return view('conditions');
+        $conditions = Condition::where('status', 1)->where('type', 'knee')->get();
+        return view('conditions', compact('conditions'));
     }
 
     public function scientificContributions()
