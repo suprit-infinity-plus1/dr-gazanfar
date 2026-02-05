@@ -30,9 +30,9 @@ class BlogController extends Controller
             });
         }
 
-        $latestBlogs = $query->with(['category', 'tags'])
+        $latestBlogs = $query->with(['categories', 'tags'])
             ->orderBy('published_at', 'desc')
-            ->paginate(12);
+            ->paginate(10);
 
         return view('blogs', compact('categories', 'latestBlogs', 'tags', 'recentBlogs'));
     }
@@ -50,10 +50,12 @@ class BlogController extends Controller
         $category = BlogCategory::where('slug', $slug)->firstOrFail();
 
         $blogs = Blog::where('status', true)
-            ->where('category_id', $category->id)
+            ->whereHas('categories', function ($q) use ($category) {
+                $q->where('blog_categories.id', $category->id);
+            })
             ->with(['tags'])
             ->orderBy('published_at', 'desc')
-            ->paginate(12);
+            ->paginate(10);
 
         $title = 'Category: ' . $category->name;
 
@@ -76,9 +78,9 @@ class BlogController extends Controller
             $q->where('tags.id', $tag->id);
         })
             ->where('status', true)
-            ->with(['category', 'tags'])
+            ->with(['categories', 'tags'])
             ->orderBy('published_at', 'desc')
-            ->paginate(12);
+            ->paginate(10);
 
         $title = 'Tag: ' . $tag->name;
 
@@ -97,15 +99,17 @@ class BlogController extends Controller
 
         $blog = Blog::where('slug', $slug)
             ->where('status', true)
-            ->with(['category', 'tags', 'faqs'])
+            ->with(['categories', 'tags', 'faqs'])
             ->firstOrFail();
 
         // Increment views
         $blog->increment('views');
 
-        // Get related blogs from same category
+        // Get related blogs from same categories
         $relatedBlogs = Blog::where('status', true)
-            ->where('category_id', $blog->category_id)
+            ->whereHas('categories', function ($q) use ($blog) {
+                $q->whereIn('blog_categories.id', $blog->categories->pluck('id'));
+            })
             ->where('id', '!=', $blog->id)
             ->orderBy('published_at', 'desc')
             ->limit(9)

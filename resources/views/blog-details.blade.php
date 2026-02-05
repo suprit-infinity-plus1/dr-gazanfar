@@ -61,13 +61,18 @@
                                 <!-- Start Post Thumb -->
 
                                 <div class="info">
-                                    <div class="tags">
-                                        <ul>
-                                            <li>
-                                                <a href="#">{{ $blog->category->name }}</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    @if ($blog->categories->isNotEmpty())
+                                        <div class="tags">
+                                            <ul>
+                                                @foreach ($blog->categories as $category)
+                                                    <li>
+                                                        <a
+                                                            href="{{ route('all-blogs', $category->slug) }}">{{ $category->name }}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                     <h4>{{ $blog->title }}</h4>
 
                                     <div class="blog-detail-content">
@@ -200,30 +205,31 @@
                 <!-- End Related Blogs -->
             </div>
         </div>
-        <!-- End Blog -->
-    @endsection
+    </div>
+    <!-- End Blog -->
+@endsection
 
-    @push('scripts')
-        <script>
-            $(document).ready(function() {
-                $('.related-blogs-carousel').owlCarousel({
-                    loop: false,
-                    margin: 30,
-                    nav: false,
-                    dots: true,
-                    autoplay: true,
-                    responsive: {
-                        0: {
-                            items: 1
-                        },
-                        800: {
-                            items: 2
-                        },
-                        1000: {
-                            items: 3
-                        }
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.related-blogs-carousel').owlCarousel({
+                loop: false,
+                margin: 30,
+                nav: false,
+                dots: true,
+                autoplay: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    800: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
                     }
-                });
+                }
             });
-        </script>
-    @endpush
+        });
+    </script>
+@endpush

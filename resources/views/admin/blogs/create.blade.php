@@ -77,7 +77,7 @@
                 <div class="lg:col-span-1 space-y-6">
                     <!-- Status & Image -->
                     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                        <h3 class="text-lg font-bold text-gray-800 mb-4">Publish</h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">Other Details</h3>
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
@@ -94,7 +94,14 @@
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Cover Image</label>
-                            <input type="file" name="cover_image" accept="image/*" required
+
+                            <!-- Image Preview -->
+                            <div x-show="imagePreview" class="mb-2">
+                                <img :src="imagePreview"
+                                    class="w-16 h-16 object-cover rounded-lg border border-gray-200">
+                            </div>
+
+                            <input type="file" name="cover_image" accept="image/*" required @change="fileChosen"
                                 class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                             @error('cover_image')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -111,7 +118,7 @@
 
                     <!-- Organization -->
                     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                        <h3 class="text-lg font-bold text-gray-800 mb-4">Organization</h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">Category & Tags</h3>
 
                         <!-- Category -->
                         <div class="mb-6">
@@ -121,15 +128,15 @@
                                 <button type="button" @click="openCategoryModal()"
                                     class="text-xs text-blue-600 hover:underline">Manage Categories</button>
                             </div>
-                            <select name="category_id" x-model="selectedCategory" required
+                            <select name="categories[]" id="categoriesSelect" multiple required
                                 class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500 shadow-sm">
-                                <option value="">Select Category</option>
                                 <template x-for="cat in categories" :key="cat.id">
-                                    <option :value="cat.id" x-text="cat.name" :selected="cat.id == selectedCategory">
+                                    <option :value="cat.id" x-text="cat.name"
+                                        :selected="selectedCategories.includes(cat.id)">
                                     </option>
                                 </template>
                             </select>
-                            @error('category_id')
+                            @error('categories')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -223,7 +230,11 @@
                                                     <div class="flex gap-2">
                                                         <button @click="editCategory(cat)"
                                                             class="text-blue-500 hover:text-blue-700 text-xs font-medium">
-                                                            Edit
+                                                            <i class="fas fa-edit"></i> Edit
+                                                        </button>
+                                                        <button @click="deleteCategory(cat.id)"
+                                                            class="text-red-500 hover:text-red-700 text-xs font-medium ml-2">
+                                                            <i class="fas fa-trash"></i> Delete
                                                         </button>
                                                     </div>
                                                 </li>
@@ -300,10 +311,16 @@
                                                         class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
                                                         <span x-text="tag.name"></span>
                                                     </span>
-                                                    <button @click="editTag(tag)"
-                                                        class="text-blue-500 hover:text-blue-700 text-xs font-medium">
-                                                        Edit
-                                                    </button>
+                                                    <div class="flex gap-2">
+                                                        <button @click="editTag(tag)"
+                                                            class="text-blue-500 hover:text-blue-700 text-xs font-medium">
+                                                            <i class="fas fa-edit"></i> Edit
+                                                        </button>
+                                                        <button @click="deleteTag(tag.id)"
+                                                            class="text-red-500 hover:text-red-700 text-xs font-medium ml-2">
+                                                            <i class="fas fa-trash"></i> Delete
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </template>
                                         </div>
@@ -333,8 +350,9 @@
                     showTagModal: false,
                     categories: {!! json_encode($categories) !!},
                     tags: {!! json_encode($tags) !!},
-                    selectedCategory: '{{ old('category_id') }}',
+                    selectedCategories: [],
                     selectedTags: [],
+                    imagePreview: null,
 
                     // State
                     newCategoryName: '',
@@ -343,6 +361,14 @@
                     editingTag: null,
 
                     init() {
+                        // Init Select2 for categories
+                        this.$nextTick(() => {
+                            $('#categoriesSelect').select2({
+                                placeholder: "Select Categories",
+                                width: '100%'
+                            }).val(this.selectedCategories).trigger('change');
+                        });
+
                         // Init Select2 for tags
                         this.$nextTick(() => {
                             $('#tagsSelect').select2({
@@ -359,6 +385,20 @@
                     openTagModal() {
                         this.showTagModal = true;
                         this.cancelTagEdit();
+                    },
+
+                    fileChosen(event) {
+                        this.fileToDataUrl(event, src => this.imagePreview = src)
+                    },
+
+                    fileToDataUrl(event, callback) {
+                        if (!event.target.files.length) return
+
+                        let file = event.target.files[0],
+                            reader = new FileReader()
+
+                        reader.readAsDataURL(file)
+                        reader.onload = e => callback(e.target.result)
                     },
 
                     // ================= CATEGORY LOGIC =================
@@ -384,7 +424,8 @@
                             if (data.success) {
                                 this.categories.push(data.category);
                                 this.newCategoryName = '';
-                                this.selectedCategory = data.category.id;
+                                let newOption = new Option(data.category.name, data.category.id, true, true);
+                                $('#categoriesSelect').append(newOption).trigger('change');
                             }
                         } catch (error) {
                             console.error(error);
@@ -435,6 +476,42 @@
                         } catch (error) {
                             console.error('Error:', error);
                             alert('Failed to update category');
+                        }
+                    },
+
+                    async deleteCategory(id) {
+                        if (!confirm('Are you sure you want to delete this category?')) return;
+
+                        try {
+                            const url = `{{ url('admin/dashboard/blogs/categories/delete') }}/${id}`;
+                            const response = await fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                        .getAttribute('content'),
+                                    'Accept': 'application/json'
+                                }
+                            });
+
+                            if (response.ok) {
+                                // Remove from categories array
+                                this.categories = this.categories.filter(c => c.id !== id);
+
+                                // Remove option from Select2
+                                $(`#categoriesSelect option[value="${id}"]`).remove();
+                                $('#categoriesSelect').trigger('change');
+
+                                // If we were editing this specific category, close edit mode
+                                if (this.editingCategory && this.editingCategory.id === id) {
+                                    this.cancelCategoryEdit();
+                                }
+                            } else {
+                                alert('Failed to delete category');
+                            }
+                        } catch (error) {
+                            console.error(error);
+                            alert('An error occurred');
                         }
                     },
 
@@ -510,6 +587,42 @@
                         } catch (error) {
                             console.error('Error:', error);
                             alert('Failed to update tag');
+                        }
+                    },
+
+                    async deleteTag(id) {
+                        if (!confirm('Are you sure you want to delete this tag?')) return;
+
+                        try {
+                            const url = `{{ url('admin/dashboard/blogs/tags/delete') }}/${id}`;
+                            const response = await fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                        .getAttribute('content'),
+                                    'Accept': 'application/json'
+                                }
+                            });
+
+                            if (response.ok) {
+                                // Remove from tags array
+                                this.tags = this.tags.filter(t => t.id !== id);
+
+                                // Remove option from Select2
+                                $(`#tagsSelect option[value="${id}"]`).remove();
+                                $('#tagsSelect').trigger('change');
+
+                                // If we were editing this specific tag, close edit mode
+                                if (this.editingTag && this.editingTag.id === id) {
+                                    this.cancelTagEdit();
+                                }
+                            } else {
+                                alert('Failed to delete tag');
+                            }
+                        } catch (error) {
+                            console.error(error);
+                            alert('An error occurred');
                         }
                     }
                 }

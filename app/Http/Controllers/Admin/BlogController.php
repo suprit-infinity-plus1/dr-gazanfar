@@ -19,11 +19,26 @@ class BlogController extends Controller
     /**
      * Display all blogs
      */
-    public function blogs()
+    public function blogs(Request $request)
     {
-        $blogs = Blog::with(['category', 'tags'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(20);
+        $query = Blog::with(['categories', 'tags']);
+
+        if ($request->has('sort') && $request->sort == 'title') {
+            $direction = $request->get('direction', 'asc') == 'desc' ? 'desc' : 'asc';
+            $query->orderBy('title', $direction);
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('slug', 'like', "%{$search}%");
+            });
+        }
+
+        $blogs = $query->paginate(10);
 
         $categories = BlogCategory::all();
         $tags = Tag::all();
@@ -52,7 +67,8 @@ class BlogController extends Controller
             'seo_title' => 'nullable|string|max:255',
             'cover_image' => 'required|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
             'cover_image_alt' => 'nullable|string|max:255',
-            'category_id' => 'required|exists:blog_categories,id',
+            'categories' => 'required|array',
+            'categories.*' => 'exists:blog_categories,id',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
             'author' => 'nullable|string|max:255',
@@ -100,18 +116,20 @@ class BlogController extends Controller
             'cover_image_alt' => $request->cover_image_alt,
             'content' => $request->content,
             'author' => $author,
-            'category_id' => $request->category_id,
             'status' => $request->status,
             'published_at' => $publishedAt,
             'meta_description' => $request->meta_description,
             'meta_keywords' => $request->meta_keywords,
             'canonical_url' => $canonicalUrl,
-            'schema' => $request->schema,
+            'schema' => $request->input('schema'),
         ]);
 
+        // Attach categories
+        $blog->categories()->attach($request->input('categories'));
+
         // Attach tags
-        if ($request->tags) {
-            $blog->tags()->attach($request->tags);
+        if ($request->input('tags')) {
+            $blog->tags()->attach($request->input('tags'));
         }
 
         // Handle FAQs
@@ -154,7 +172,9 @@ class BlogController extends Controller
             'seo_title' => 'nullable|string|max:255',
             'cover_image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
             'cover_image_alt' => 'nullable|string|max:255',
-            'category_id' => 'required|exists:blog_categories,id',
+            'categories' => 'nullable|array',
+            'categories.*' => 'exists:blog_categories,id',
+            'category_id' => 'nullable|exists:blog_categories,id',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
             'author' => 'nullable|string|max:255',
@@ -203,17 +223,23 @@ class BlogController extends Controller
             'cover_image_alt' => $request->cover_image_alt,
             'content' => $request->content,
             'author' => $request->author ?? $blog->author,
-            'category_id' => $request->category_id,
             'status' => $request->status,
             'meta_description' => $request->meta_description,
             'meta_keywords' => $request->meta_keywords,
             'canonical_url' => $request->canonical_url,
-            'schema' => $request->schema,
+            'schema' => $request->input('schema'),
         ]);
+
+        // Sync categories
+        $categories = $request->input('categories');
+        if (!$categories && $request->has('category_id')) {
+            $categories = [$request->input('category_id')];
+        }
+        $blog->categories()->sync($categories);
 
         // Sync tags
         if ($request->has('tags')) {
-            $blog->tags()->sync($request->tags);
+            $blog->tags()->sync($request->input('tags'));
         } else {
             $blog->tags()->detach();
         }
@@ -352,10 +378,17 @@ class BlogController extends Controller
     /**
      * Delete category
      */
-    public function categoriesDelete($id)
+    public function categoriesDelete(Request $request, $id)
     {
         $category = BlogCategory::findOrFail($id);
         $category->delete();
+
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Category deleted successfully!'
+            ]);
+        }
 
         return redirect()->route('admin.blogs.categories')->with('success', 'Category deleted successfully!');
     }
@@ -463,10 +496,17 @@ class BlogController extends Controller
     /**
      * Delete tag
      */
-    public function tagsDelete($id)
+    public function tagsDelete(Request $request, $id)
     {
         $tag = Tag::findOrFail($id);
         $tag->delete();
+
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Tag deleted successfully!'
+            ]);
+        }
 
         return redirect()->route('admin.blogs.tags')->with('success', 'Tag deleted successfully!');
     }

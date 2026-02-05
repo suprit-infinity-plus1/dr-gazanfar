@@ -4,17 +4,22 @@
 @section('header_title', 'All Blogs')
 
 @section('content')
-@section('content')
     <div x-data="blogIndexForm()">
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             <!-- Toolbar -->
             <div class="px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <!-- Search -->
-                <div class="relative w-full sm:w-64">
-                    <input type="text" placeholder="Search blogs..."
-                        class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all text-sm">
-                    <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
-                </div>
+                <form action="{{ route('admin.blogs') }}" method="GET" class="flex gap-2 w-full sm:w-auto">
+                    <div class="relative w-full sm:w-64">
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search blogs..."
+                            class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all text-sm">
+                        <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                    </div>
+                    <button type="submit"
+                        class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
+                        Search
+                    </button>
+                </form>
 
                 <!-- Add Button -->
                 <div class="flex gap-2">
@@ -38,8 +43,14 @@
                 <table class="w-full text-left text-sm text-gray-600">
                     <thead class="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
                         <tr>
-                            <th class="px-6 py-3">Title</th>
                             <th class="px-6 py-3">Cover</th>
+                            <th class="px-6 py-3">
+                                <a href="{{ route('admin.blogs', ['sort' => 'title', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc', 'search' => request('search')]) }}"
+                                    class="flex items-center gap-1 hover:text-gray-700">
+                                    Title
+                                    <i class="fas fa-sort text-gray-300"></i>
+                                </a>
+                            </th>
                             <th class="px-6 py-3">Category</th>
                             <th class="px-6 py-3">Views</th>
                             <th class="px-6 py-3">Status</th>
@@ -49,10 +60,6 @@
                     <tbody class="divide-y divide-gray-100">
                         @forelse($blogs as $blog)
                             <tr class="hover:bg-gray-50 transition-colors group">
-                                <td class="px-6 py-4 font-medium text-gray-900">
-                                    {{ Str::limit($blog->title, 40) }}
-                                    <div class="text-xs text-gray-400 font-normal mt-0.5">{{ $blog->slug }}</div>
-                                </td>
                                 <td class="px-6 py-4">
                                     @if ($blog->cover_image)
                                         <img src="{{ Storage::url($blog->cover_image) }}" alt="Cover"
@@ -64,11 +71,20 @@
                                         </div>
                                     @endif
                                 </td>
+                                <td class="px-6 py-4 font-medium text-gray-900">
+                                    {{ Str::limit($blog->title, 40) }}
+                                    <div class="text-xs text-gray-400 font-normal mt-0.5">{{ $blog->slug }}</div>
+                                </td>
                                 <td class="px-6 py-4">
-                                    <span
-                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                        {{ $blog->category->name ?? 'None' }}
-                                    </span>
+                                    <div class="flex flex-wrap gap-1">
+                                        @foreach ($blog->categories as $category)
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                                {{ $category->name }}
+                                            </span>
+                                        @endforeach
+
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4 text-gray-500">
                                     <i class="fas fa-eye text-xs mr-1 opacity-70"></i> {{ $blog->views }}
@@ -87,8 +103,12 @@
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 text-right">
-                                    <div
-                                        class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <a href="{{ route('blog.show', $blog->slug) }}" target="_blank"
+                                            class="p-1.5 text-gray-500 hover:text-green-600 transition-colors"
+                                            title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                         <a href="{{ route('admin.blogs.edit', $blog->id) }}"
                                             class="p-1.5 text-gray-500 hover:text-blue-600 transition-colors"
                                             title="Edit">
@@ -124,7 +144,7 @@
 
             <!-- Pagination -->
             <div class="px-6 py-4 border-t border-gray-100 bg-gray-50">
-                {{ $blogs->links('pagination::tailwind') }}
+                {{ $blogs->links('pagination.admin-simple') }}
             </div>
         </div>
 
@@ -187,7 +207,11 @@
                                                     <div class="flex gap-2">
                                                         <button @click="editCategory(cat)"
                                                             class="text-blue-500 hover:text-blue-700 text-xs font-medium">
-                                                            Edit
+                                                            <i class="fas fa-edit"></i> Edit
+                                                        </button>
+                                                        <button @click="deleteCategory(cat.id)"
+                                                            class="text-red-500 hover:text-red-700 text-xs font-medium ml-2">
+                                                            <i class="fas fa-trash"></i> Delete
                                                         </button>
                                                     </div>
                                                 </li>
@@ -264,10 +288,16 @@
                                                         class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
                                                         <span x-text="tag.name"></span>
                                                     </span>
-                                                    <button @click="editTag(tag)"
-                                                        class="text-blue-500 hover:text-blue-700 text-xs font-medium">
-                                                        Edit
-                                                    </button>
+                                                    <div class="flex gap-2">
+                                                        <button @click="editTag(tag)"
+                                                            class="text-blue-500 hover:text-blue-700 text-xs font-medium">
+                                                            <i class="fas fa-edit"></i> Edit
+                                                        </button>
+                                                        <button @click="deleteTag(tag.id)"
+                                                            class="text-red-500 hover:text-red-700 text-xs font-medium ml-2">
+                                                            <i class="fas fa-trash"></i> Delete
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </template>
                                         </div>
@@ -382,6 +412,35 @@
                             }
                         },
 
+                        async deleteCategory(id) {
+                            if (!confirm('Are you sure you want to delete this category?')) return;
+
+                            try {
+                                const url = `{{ url('admin/dashboard/blogs/categories/delete') }}/${id}`;
+                                const response = await fetch(url, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                            .getAttribute('content'),
+                                        'Accept': 'application/json'
+                                    }
+                                });
+
+                                if (response.ok) {
+                                    this.categories = this.categories.filter(c => c.id !== id);
+                                    if (this.editingCategory && this.editingCategory.id === id) {
+                                        this.cancelCategoryEdit();
+                                    }
+                                } else {
+                                    alert('Failed to delete category');
+                                }
+                            } catch (error) {
+                                console.error(error);
+                                alert('An error occurred');
+                            }
+                        },
+
                         // ================= TAG LOGIC =================
 
                         async createTag() {
@@ -451,6 +510,35 @@
                             } catch (error) {
                                 console.error('Error:', error);
                                 alert('Failed to update tag');
+                            }
+                        },
+
+                        async deleteTag(id) {
+                            if (!confirm('Are you sure you want to delete this tag?')) return;
+
+                            try {
+                                const url = `{{ url('admin/dashboard/blogs/tags/delete') }}/${id}`;
+                                const response = await fetch(url, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                            .getAttribute('content'),
+                                        'Accept': 'application/json'
+                                    }
+                                });
+
+                                if (response.ok) {
+                                    this.tags = this.tags.filter(t => t.id !== id);
+                                    if (this.editingTag && this.editingTag.id === id) {
+                                        this.cancelTagEdit();
+                                    }
+                                } else {
+                                    alert('Failed to delete tag');
+                                }
+                            } catch (error) {
+                                console.error(error);
+                                alert('An error occurred');
                             }
                         }
                     }

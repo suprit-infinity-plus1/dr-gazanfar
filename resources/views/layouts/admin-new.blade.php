@@ -52,7 +52,7 @@
                     class="flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors group
                    {{ request()->routeIs('dashboard') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' }}">
                     <i
-                        class="fas fa-fire w-6 text-lg {{ request()->routeIs('dashboard') ? 'text-blue-700' : 'text-gray-400 group-hover:text-gray-500' }}"></i>
+                        class="fas fa-border-all w-6 text-lg {{ request()->routeIs('dashboard') ? 'text-blue-700' : 'text-gray-400 group-hover:text-gray-500' }}"></i>
                     <span class="ml-3 transition-opacity duration-300" x-show="sidebarOpen">Dashboard</span>
                 </a>
 
@@ -61,7 +61,7 @@
                     class="flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors group
                    {{ request()->routeIs('admin.blogs*') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' }}">
                     <i
-                        class="fas fa-blog w-6 text-lg {{ request()->routeIs('admin.blogs*') ? 'text-blue-700' : 'text-gray-400 group-hover:text-gray-500' }}"></i>
+                        class="fas fa-newspaper w-6 text-lg {{ request()->routeIs('admin.blogs*') ? 'text-blue-700' : 'text-gray-400 group-hover:text-gray-500' }}"></i>
                     <span class="ml-3 transition-opacity duration-300" x-show="sidebarOpen">Blogs</span>
                 </a>
 
@@ -187,6 +187,8 @@
             });
         });
     </script>
+    @stack('scripts')
+    <!-- Dynamic Scripts -->
     @stack('scripts')
 </body>
 

@@ -13,7 +13,7 @@ class BlogCategory extends Model
      */
     public function blogs()
     {
-        return $this->hasMany(Blog::class, 'category_id');
+        return $this->belongsToMany(Blog::class, 'blog_blog_category');
     }
 
     /**

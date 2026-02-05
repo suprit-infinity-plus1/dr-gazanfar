@@ -45,13 +45,18 @@
                                                 </div>
                                             </div>
                                             <div class="info">
-                                                <div class="tags">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#">{{ $blog->category->name ?? 'Health' }}</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                @if ($blog->categories->isNotEmpty())
+                                                    <div class="tags">
+                                                        <ul>
+                                                            @foreach ($blog->categories as $category)
+                                                                <li>
+                                                                    <a
+                                                                        href="{{ route('all-blogs', $category->slug) }}">{{ $category->name }}</a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
                                                 <h4>
                                                     <a
                                                         href="{{ route('blog.show', $blog->slug) }}">{{ Str::limit($blog->title, 50) }}</a>
@@ -84,7 +89,7 @@
                             <!-- Pagination -->
                             <div class="row">
                                 <div class="col-md-12 pagi-area text-center">
-                                    {{ $latestBlogs->links('pagination::bootstrap-4') }}
+                                    {{ $latestBlogs->links('pagination.custom') }}
                                 </div>
                             </div>
                         </div>

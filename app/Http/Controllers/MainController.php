@@ -16,7 +16,7 @@ class MainController extends Controller
         $blogsCount = Blog::count();
         $categoriesCount = BlogCategory::count();
         $tagsCount = Tag::count();
-        $recentBlogs = Blog::with('category')->orderBy('created_at', 'desc')->limit(10)->get();
+        $recentBlogs = Blog::with('categories')->orderBy('created_at', 'desc')->limit(10)->get();
 
         return view('admin.dashboard', compact('blogsCount', 'categoriesCount', 'tagsCount', 'recentBlogs'));
     }

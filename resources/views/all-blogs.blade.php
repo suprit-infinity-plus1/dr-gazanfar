@@ -48,9 +48,12 @@
                                             <div class="info">
                                                 <div class="tags">
                                                     <ul>
-                                                        <li>
-                                                            <a href="#">{{ $blog->category->name ?? 'Health' }}</a>
-                                                        </li>
+                                                        @foreach ($blog->categories as $category)
+                                                            <li>
+                                                                <a
+                                                                    href="{{ route('all-blogs', $category->slug) }}">{{ $category->name }}</a>
+                                                            </li>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
                                                 <h4>
@@ -85,7 +88,7 @@
                             <!-- Pagination -->
                             <div class="row">
                                 <div class="col-md-12 pagi-area text-center">
-                                    {{ $blogs->links('pagination::bootstrap-4') }}
+                                    {{ $blogs->links('pagination.custom') }}
                                 </div>
                             </div>
                         </div>

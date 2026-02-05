@@ -30,11 +30,11 @@ class Blog extends Model
     ];
 
     /**
-     * Get the category of this blog
+     * Get the categories of this blog
      */
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(BlogCategory::class, 'category_id');
+        return $this->belongsToMany(BlogCategory::class, 'blog_blog_category');
     }
 
     /**

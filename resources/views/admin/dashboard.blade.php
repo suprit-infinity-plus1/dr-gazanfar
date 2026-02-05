@@ -87,10 +87,17 @@
                         <tr class="hover:bg-gray-50 transition-colors">
                             <td class="px-6 py-4 font-medium text-gray-900">{{ Str::limit($blog->title, 40) }}</td>
                             <td class="px-6 py-4">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                    {{ $blog->category->name ?? 'Uncategorized' }}
-                                </span>
+                                <div class="flex flex-wrap gap-1">
+                                    @foreach ($blog->categories as $category)
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                            {{ $category->name }}
+                                        </span>
+                                    @endforeach
+                                    @if ($blog->categories->isEmpty())
+                                        <span class="text-xs text-gray-400">Uncategorized</span>
+                                    @endif
+                                </div>
                             </td>
                             <td class="px-6 py-4">{{ $blog->author }}</td>
                             <td class="px-6 py-4">
