@@ -27,11 +27,12 @@
     <!-- End Breadcrumb -->
 
     <!-- Start Department Single -->
+    <!-- Start Department Single -->
     <div class="department-single-area default-padding">
         <div class="container">
             <div class="row">
-                <!-- Main Content (Centered) -->
-                <div class="col-lg-8 offset-lg-2">
+                <!-- Main Content -->
+                <div class="col-lg-8">
                     <div class="department-single-content">
 
                         <!-- Breadcrumb-like top text -->
@@ -149,6 +150,9 @@
 
                     </div>
                 </div>
+
+                <!-- Sidebar -->
+                @include('partials.department-sidebar')
             </div>
 
             <!-- Related Treatments Section -->

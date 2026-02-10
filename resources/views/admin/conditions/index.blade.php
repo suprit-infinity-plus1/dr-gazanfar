@@ -20,8 +20,8 @@
             <table class="w-full text-left text-sm text-gray-600">
                 <thead class="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
                     <tr>
-                        <th class="px-6 py-3">Title</th>
                         <th class="px-6 py-3">Icon</th>
+                        <th class="px-6 py-3">Title</th>
                         <th class="px-6 py-3">Department Head</th>
                         <th class="px-6 py-3">Status</th>
                         <th class="px-6 py-3 text-right">Actions</th>
@@ -30,9 +30,6 @@
                 <tbody class="divide-y divide-gray-100">
                     @forelse($conditions as $condition)
                         <tr class="hover:bg-gray-50 transition-colors group">
-                            <td class="px-6 py-4 font-medium text-gray-900">
-                                {{ $condition->title }}
-                            </td>
                             <td class="px-6 py-4">
                                 @if ($condition->icon)
                                     <img src="{{ Storage::url($condition->icon) }}" alt="Icon"
@@ -40,6 +37,9 @@
                                 @else
                                     <span class="text-gray-400">No Icon</span>
                                 @endif
+                            </td>
+                            <td class="px-6 py-4 font-medium text-gray-900">
+                                {{ $condition->title }}
                             </td>
                             <td class="px-6 py-4">{{ $condition->department_head ?? 'N/A' }}</td>
                             <td class="px-6 py-4">
@@ -52,8 +52,11 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <div
-                                    class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="flex items-center justify-end gap-2">
+                                    <a href="{{ route('condition.show', $condition->slug ?? '#') }}" target="_blank"
+                                        class="p-1.5 text-gray-500 hover:text-green-600 transition-colors" title="View">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
                                     <a href="{{ route('admin.conditions.edit', $condition->id) }}"
                                         class="p-1.5 text-gray-500 hover:text-blue-600 transition-colors" title="Edit">
                                         <i class="fas fa-edit"></i>

@@ -48,7 +48,8 @@ class MainController extends Controller
 
     public function blogs()
     {
-        return view('blogs');
+        $latestBlogs = Blog::with('categories', 'tags')->where('status', 'published')->orderBy('published_at', 'desc')->paginate(6);
+        return view('blogs', compact('latestBlogs'));
     }
 
     public function singleBlog()
@@ -80,6 +81,28 @@ class MainController extends Controller
     {
         $conditions = Condition::where('status', 1)->where('type', 'knee')->get();
         return view('conditions', compact('conditions'));
+    }
+
+    public function condition($slug)
+    {
+        $condition = Condition::where('slug', $slug)->where('status', 1)->firstOrFail();
+        // Get related treatments based on the same type (knee/hip)
+        $relatedTreatments = Treatment::where('type', $condition->type)
+            ->where('status', 1)
+            ->inRandomOrder()
+            ->limit(3)
+            ->get();
+
+        $recentBlogs = Blog::latest()->limit(3)->get();
+
+        return view('condition-single', compact('condition', 'relatedTreatments', 'recentBlogs'));
+    }
+
+    public function treatment($slug)
+    {
+        $treatment = Treatment::where('slug', $slug)->where('status', 1)->firstOrFail();
+        $recentBlogs = Blog::latest()->limit(3)->get();
+        return view('treatment-single', compact('treatment', 'recentBlogs'));
     }
 
     public function scientificContributions()

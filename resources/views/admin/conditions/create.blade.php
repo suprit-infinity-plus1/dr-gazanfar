@@ -4,7 +4,7 @@
 @section('header_title', 'Add New Condition')
 
 @section('content')
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 max-w-4xl mx-auto">
+    <div x-data="conditionForm()" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 max-w-4xl mx-auto">
         <form action="{{ route('admin.conditions.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
 
@@ -13,9 +13,18 @@
                 <div class="col-span-2">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Condition Title <span
                             class="text-red-500">*</span></label>
-                    <input type="text" name="title" value="{{ old('title') }}" required
+                    <input type="text" name="title" value="{{ old('title') }}" required x-model="title"
+                        @input="generateSlug"
                         class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500 shadow-sm"
                         placeholder="e.g. Arthritis">
+                </div>
+
+                <!-- Slug -->
+                <div class="col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Slug <span
+                            class="text-red-500">*</span></label>
+                    <input type="text" name="slug" value="{{ old('slug') }}" required x-model="slug"
+                        class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500 shadow-sm bg-gray-50">
                 </div>
 
                 <!-- Department Head -->
@@ -42,7 +51,11 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Icon/Image <span
                             class="text-red-500">*</span></label>
-                    <input type="file" name="icon" accept="image/*" required
+                    <!-- Image Preview -->
+                    <div x-show="imagePreview" class="mb-2">
+                        <img :src="imagePreview" class="w-16 h-16 object-cover rounded-lg border border-gray-200">
+                    </div>
+                    <input type="file" name="icon" accept="image/*" required @change="fileChosen"
                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                 </div>
 
@@ -92,4 +105,37 @@
             </div>
         </form>
     </div>
+
+    @push('scripts')
+        <script>
+            function conditionForm() {
+                return {
+                    title: '{{ old('title') }}',
+                    slug: '{{ old('slug') }}',
+                    imagePreview: null,
+
+                    generateSlug() {
+                        this.slug = this.title
+                            .toLowerCase()
+                            .replace(/[^\w ]+/g, '')
+                            .replace(/ +/g, '-');
+                    },
+
+                    fileChosen(event) {
+                        this.fileToDataUrl(event, src => this.imagePreview = src)
+                    },
+
+                    fileToDataUrl(event, callback) {
+                        if (!event.target.files.length) return
+
+                        let file = event.target.files[0],
+                            reader = new FileReader()
+
+                        reader.readAsDataURL(file)
+                        reader.onload = e => callback(e.target.result)
+                    }
+                }
+            }
+        </script>
+    @endpush
 @endsection
