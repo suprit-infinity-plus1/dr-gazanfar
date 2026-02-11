@@ -107,7 +107,7 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
 
                     <div class="collapse-header">
-                        <img src="assets/img/logo1.png" alt="Logo">
+                        <img src="assets/img/coastalcityorthopaedics-logo.png" alt="Logo">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                             <i class="fa fa-times"></i>
                         </button>

@@ -6,13 +6,14 @@
     dental, and general health services.')
 @section('content')
     <!-- Start Banner
-                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                    ============================================= -->
     <div class="banner-area inc-shape content-less">
         <div id="bootcarousel" class="carousel text-light text-large slide carousel-fade animate_text" data-ride="carousel">
             <!-- Wrapper for slides -->
             <div class="carousel-inner carousel-zoom">
                 <div class="carousel-item active">
-                    <div class="slider-thumb bg-cover" style="background-image: url({{ asset('assets/img/banner/1.jpg') }});">
+                    <div class="slider-thumb bg-cover"
+                        style="background-image: url({{ asset('assets/img/banner/dr-gazanfar-banner-1.jpeg') }});">
                     </div>
                     <div class="box-table">
                         <div class="box-cell shadow dark">
@@ -24,7 +25,8 @@
                                             <h2 data-animation="animated slideInRight">Meet the <strong>Best
                                                     Doctors</strong></h2>
                                             <a data-animation="animated fadeInUp" class="btn btn-md btn-gradient"
-                                                href="#"><i class="fas fa-angle-right"></i> Discover More</a>
+                                                href="{{ route('about') }}"><i class="fas fa-angle-right"></i> Discover
+                                                More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -34,7 +36,7 @@
                 </div>
                 <div class="carousel-item">
                     <div class="slider-thumb bg-cover"
-                        style="background-image: url({{ asset('assets/img/banner/2.jpg') }});"></div>
+                        style="background-image: url({{ asset('assets/img/banner/dr-gazanfar-banner-2.jpeg') }});"></div>
                     <div class="box-table">
                         <div class="box-cell shadow dark">
                             <div class="container">
@@ -45,7 +47,8 @@
                                             <h2 data-animation="animated slideInRight">Meet the <strong>Best
                                                     Hospital</strong></h2>
                                             <a data-animation="animated fadeInUp" class="btn btn-md btn-gradient"
-                                                href="#"><i class="fas fa-angle-right"></i> Discover More</a>
+                                                href="{{ route('about') }}"><i class="fas fa-angle-right"></i> Discover
+                                                More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +73,7 @@
     <!-- End Banner -->
 
     <!-- Start Top Entry
-                                                                                                                                                            ============================================= -->
+                                                                                                                                                                                                                                                                                ============================================= -->
     <div class="top-entry-area relative default-padding text-center">
         <div class="container">
             <div class="item-box">
@@ -98,7 +101,8 @@
                     <div class="col-lg-4 single-item">
                         <div class="thumb">
                             {{-- <img src="{{ asset('assets/img/thumb/1.png') }}" alt="Thumb"> --}}
-                            <img class="w-100" src="{{ asset('assets/img/doctors/17610.png') }}" alt="Thumb">
+                            <img class="w-100" src="{{ asset('assets/img/doctors/dr-gazanfar-about-us-img1.jpeg') }}"
+                                alt="Thumb">
                         </div>
                     </div>
                     <!-- End Single Item -->
@@ -141,7 +145,7 @@
 
                 <div class="col-lg-6 thumb">
                     <div class="thumb-box">
-                        <img src="{{ asset('assets/img/about/2.jpg') }}" alt="Thumb">
+                        <img src="{{ asset('assets/img/doctors/dr-gazanfar-about-us-img.jpeg') }}" alt="Thumb">
                         <div class="intro-video">
                             <div class="video">
                                 <a href="https://www.youtube.com/watch?v=5vY-D42NFP4"
@@ -255,95 +259,34 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="department-items department-carousel owl-carousel owl-theme">
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('assets/img/departments/1.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Anterior Hip Replacement</a></h4>
-                                <p>
-                                    Medical conditions such as arthritis can damage or wear out the articular cartilage
-                                    covering the hip joint surface and cause inflammation and severe pain in the hip.
-                                </p>
-                                {{-- <div class="head-of">
+                        @foreach ($kneeTreatments as $treatment)
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{ route('treatment.show', $treatment->slug) }}">
+                                        @if ($treatment->icon)
+                                            <img src="{{ asset('storage/' . $treatment->icon) }}"
+                                                alt="{{ $treatment->title }}"
+                                                style="height: 250px; object-fit: cover; width: 100%;">
+                                        @else
+                                            <img src="{{ asset('assets/img/departments/1.jpg') }}" alt="Thumb"
+                                                style="height: 250px; object-fit: cover; width: 100%;">
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="info">
+                                    <h4><a
+                                            href="{{ route('treatment.show', $treatment->slug) }}">{{ $treatment->title }}</a>
+                                    </h4>
                                     <p>
-                                        <strong>Department head: </strong> Prof. Jonathom Doe
+                                        {{ Str::limit(strip_tags($treatment->content), 100) }}
                                     </p>
-                                </div> --}}
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
+                                    <div class="bottom">
+                                        <a href="{{ route('treatment.show', $treatment->slug) }}"><i
+                                                class="fas fa-arrow-right"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('assets/img/departments/2.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Non‑Surgical Hip Treatments</a></h4>
-                                <p>
-                                    Non‑surgical hip treatments offer effective alternatives to surgery for many hip
-                                    conditions such as arthritis, bursitis, tendonitis or early degeneration.
-                                </p>
-                                {{-- <div class="head-of">
-                                    <p>
-                                        <strong>Department head: </strong> Prof. Jaknil Akia
-                                    </p>
-                                </div> --}}
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('assets/img/departments/3.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Hip Fracture Surgery</a></h4>
-                                <p>
-                                    Hip fractures are breaks in the upper part of the femur near the hip joint often caused
-                                    by falls in older adults or high‑impact trauma in younger individuals.
-                                </p>
-                                {{-- <div class="head-of">
-                                    <p>
-                                        <strong>Department head: </strong> Prof. Shikla Brotha
-                                    </p>
-                                </div> --}}
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ asset('assets/img/departments/4.jpg') }}" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <h4><a href="#">Revision Hip Replacement</a></h4>
-                                <p>
-                                    Revision hip replacement involves replacing or revising a previous hip implant when
-                                    issues like loosening, wear, infection or fracture compromise the joint’s function and
-                                    cause pain or instability.
-                                </p>
-                                {{-- <div class="head-of">
-                                    <p>
-                                        <strong>Department head: </strong> Prof. Jaknil Akia
-                                    </p>
-                                </div> --}}
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -357,7 +300,7 @@
     <!-- End Services -->
 
     <!-- Start Consultation
-                                                                                                                                                                                                                                                            ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
     <div class="consultation-area default-padding">
         <div class="container">
             <div class="row align-center">
@@ -456,10 +399,11 @@
     <!-- End Consultation -->
 
     <!-- Start Choose Us
-                                                                                                                                                                                                                                                            ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
     <div class="choose-us-area">
         <div class="row">
-            <div class="col-lg-6 thumb bg-cover" style="background-image: url({{ asset('assets/img/banner/3.jpg') }});">
+            <div class="col-lg-6 thumb bg-cover"
+                style="background-image: url({{ asset('assets/img/doctors/dr-gazanfar-img.jpeg') }});">
             </div>
             <div class="col-lg-6 info">
                 <div class="info-box title">
@@ -483,7 +427,7 @@
     <!-- End Choose Us -->
 
     <!-- Start Doctos Area
-                                                                                                                                                                                                                                                            ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
     {{-- <div class="doctors-area bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -525,7 +469,7 @@
     <!-- End Doctos Area -->
 
     <!-- Start Gallery
-                                                                                                                                                                                                                                                        ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                            ============================================= -->
     <div class="gallery-area default-padding">
         <div class="container">
             <div class="row">
@@ -560,11 +504,11 @@
                                 <!-- Single Item -->
                                 <div class="pf-item development capital">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/1.jpg') }}" alt="thumb">
+                                        <img src="{{ asset('assets/img/gallery/gallery-1.jpeg') }}" alt="thumb">
                                         <div class="info">
                                             <h4><a href="#">General Surgery</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/1.jpg') }}" class="item popup-link"><i
-                                                    class="fa fa-plus"></i></a>
+                                            <a href="{{ asset('assets/img/gallery/gallery-1.jpeg') }}"
+                                                class="item popup-link"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -572,11 +516,11 @@
                                 <!-- Single Item -->
                                 <div class="pf-item consulting branding">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/2.jpg') }}" alt="thumb">
+                                        <img src="{{ asset('assets/img/gallery/gallery-2.jpeg') }}" alt="thumb">
                                         <div class="info">
                                             <h4><a href="#">Primary Care</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/2.jpg') }}" class="item popup-link"><i
-                                                    class="fa fa-plus"></i></a>
+                                            <a href="{{ asset('assets/img/gallery/gallery-2.jpeg') }}"
+                                                class="item popup-link"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -584,11 +528,11 @@
                                 <!-- Single Item -->
                                 <div class="pf-item consulting finance">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/3.jpg') }}" alt="thumb">
+                                        <img src="{{ asset('assets/img/gallery/gallery-3.jpeg') }}" alt="thumb">
                                         <div class="info">
                                             <h4><a href="#">Cardiology</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/3.jpg') }}" class="item popup-link"><i
-                                                    class="fa fa-plus"></i></a>
+                                            <a href="{{ asset('assets/img/gallery/gallery-3.jpeg') }}"
+                                                class="item popup-link"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -596,11 +540,11 @@
                                 <!-- Single Item -->
                                 <div class="pf-item finance">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/4.jpg') }}" alt="thumb">
+                                        <img src="{{ asset('assets/img/gallery/gallery-4.jpeg') }}" alt="thumb">
                                         <div class="info">
                                             <h4><a href="#">Cancer Care</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/4.jpg') }}" class="item popup-link"><i
-                                                    class="fa fa-plus"></i></a>
+                                            <a href="{{ asset('assets/img/gallery/gallery-4.jpeg') }}"
+                                                class="item popup-link"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -608,11 +552,11 @@
                                 <!-- Single Item -->
                                 <div class="pf-item capital development">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/5.jpg') }}" alt="thumb">
+                                        <img src="{{ asset('assets/img/gallery/gallery-5.jpeg') }}" alt="thumb">
                                         <div class="info">
                                             <h4><a href="#">Knee Treatment</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/5.jpg') }}" class="item popup-link"><i
-                                                    class="fa fa-plus"></i></a>
+                                            <a href="{{ asset('assets/img/gallery/gallery-5.jpeg') }}"
+                                                class="item popup-link"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -620,11 +564,11 @@
                                 <!-- Single Item -->
                                 <div class="pf-item consulting branding">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/6.jpg') }}" alt="thumb">
+                                        <img src="{{ asset('assets/img/gallery/gallery-6.jpeg') }}" alt="thumb">
                                         <div class="info">
                                             <h4><a href="#">Eye Care</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/6.jpg') }}" class="item popup-link"><i
-                                                    class="fa fa-plus"></i></a>
+                                            <a href="{{ asset('assets/img/gallery/gallery-6.jpeg') }}"
+                                                class="item popup-link"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -639,7 +583,7 @@
     <!-- End Gallery -->
 
     <!-- Start Testomonials
-                                                                                                                                                                                                                                                            ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
     <div class="testimonials-area overflow-hidden carousel-shadow default-padding">
         <div class="container">
             <div class="row align-center">
@@ -713,7 +657,7 @@
     <!-- End Testomonials Area -->
 
     <!-- Start Blog
-                                                                                                                                                                                                                                                            ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
     <div class="blog-area bottom-less bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -732,123 +676,56 @@
         <div class="container">
             <div class="blog-items">
                 <div class="row">
-                    <!-- Single Itme -->
-                    <div class="single-item col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="#"><img src="{{ asset('assets/img/blog/1.jpg') }}" alt="Thumb"></a>
-                                <div class="post-date">
-                                    12 Jul
+                    @foreach ($recentBlogs as $blog)
+                        <!-- Single Itme -->
+                        <div class="single-item col-lg-4 col-md-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{ route('blog.show', $blog->slug) }}">
+                                        @if ($blog->cover_image)
+                                            <img src="{{ asset('storage/' . $blog->cover_image) }}" alt="Thumb"
+                                                style="height: 250px; object-fit: cover; width: 100%;">
+                                        @else
+                                            <img src="{{ asset('assets/img/blog/1.jpg') }}" alt="Thumb"
+                                                style="height: 250px; object-fit: cover; width: 100%;">
+                                        @endif
+                                    </a>
+                                    <div class="post-date">
+                                        {{ $blog->published_at ? $blog->published_at->format('d M') : $blog->created_at->format('d M') }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="info">
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            <a href="#">Health</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Patient</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h4>
-                                    <a href="#">Enjoyed me settled mr respect no spirits civilly. </a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{ asset('assets/img/team/5.jpg') }}" alt="Author">
-                                                <span>Author</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fas fa-comments"></i> 12 Comments</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Itme -->
-                    <!-- Single Itme -->
-                    <div class="single-item col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="#"><img src="{{ asset('assets/img/blog/2.jpg') }}" alt="Thumb"></a>
-                                <div class="post-date">
-                                    05 Aug
-                                </div>
-                            </div>
-                            <div class="info">
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            <a href="#">Test</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Doctor</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h4>
-                                    <a href="#">Suitable settling attended no doubtful feelings.</a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{ asset('assets/img/team/4.jpg') }}" alt="Author">
-                                                <span>Author</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fas fa-comments"></i> 24 Comments</a>
-                                        </li>
-                                    </ul>
+                                <div class="info">
+                                    <div class="tags">
+                                        <ul>
+                                            @foreach ($blog->categories as $category)
+                                                <li>
+                                                    <a href="#">{{ $category->name }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <h4>
+                                        <a
+                                            href="{{ route('blog.show', $blog->slug) }}">{{ Str::limit($blog->title, 50) }}</a>
+                                    </h4>
+                                    <p>
+                                        {{ Str::limit(strip_tags($blog->content), 100) }}
+                                    </p>
+                                    <div class="meta">
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <img src="{{ asset('assets/img/team/5.jpg') }}" alt="Author">
+                                                    <span>{{ $blog->author ?? 'Dr. Gazanfar' }}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- End Single Itme -->
-                    <!-- Single Itme -->
-                    <div class="single-item col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="#"><img src="{{ asset('assets/img/blog/3.jpg') }}" alt="Thumb"></a>
-                                <div class="post-date">
-                                    27 Dec
-                                </div>
-                            </div>
-                            <div class="info">
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            <a href="#">Patient</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h4>
-                                    <a href="#">Unwilling sportsmen he in questions september. </a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{ asset('assets/img/team/3.jpg') }}" alt="Author">
-                                                <span>Author</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fas fa-comments"></i> 07 Comments</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Itme -->
+                        <!-- End Single Itme -->
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -856,7 +733,7 @@
     <!-- End Blog Area -->
 
     <!-- Start Contact Area
-                                                                                                                                                                                                                                                            ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
     <div id="contact" class="contact-us-area default-padding">
         <div class="container">
             <div class="contact-items">

@@ -36,12 +36,6 @@
                 <div class="col-lg-8">
                     <div class="department-single-content">
 
-                        <!-- Breadcrumb-like top text -->
-                        <div class="mb-3 text-muted" style="font-size: 0.9rem;">
-                            Dr. Gazanfar, Orthopaedic Surgeon // Conditions // {{ ucfirst($condition->type) }} // <span
-                                class="text-theme">{{ $condition->title }}</span>
-                        </div>
-
                         <!-- Main H1 -->
                         <h1 class="mb-4" style="font-size: 2.2rem; font-weight: 700; line-height: 1.3;">
                             {{ $condition->title }} Treatment by Leading {{ ucfirst($condition->type) }} Surgeon in Kashmir
@@ -50,8 +44,9 @@
                         <!-- Thumb -->
                         @if ($condition->icon)
                             <div class="thumb mb-4">
-                                <img src="{{ Storage::url($condition->icon) }}" alt="{{ $condition->title }}"
+                                <img src="{{ asset('storage/' . $condition->icon) }}" alt="{{ $condition->title }}"
                                     style="width: 100%; border-radius: 8px;">
+
                             </div>
                         @endif
 

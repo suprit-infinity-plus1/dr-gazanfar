@@ -6,7 +6,7 @@
 @section('content')
 
     <!-- Start Breadcrumb
-                                                                ============================================= -->
+                                                                                        ============================================= -->
     <div class="breadcrumb-area bg-gradient text-center">
         <!-- Fixed BG -->
         <div class="fixed-bg" style="background-image: url({{ asset('assets/img/shape/9.png') }});"></div>
@@ -27,7 +27,7 @@
     <!-- End Breadcrumb -->
 
     <!-- Start Services
-                                                                ============================================= -->
+                                                                                        ============================================= -->
     <div class="department-area carousel-shadow default-padding bg-gray">
         <div class="container">
             <div class="row">
@@ -40,9 +40,12 @@
                                     <div class="item d-flex flex-column w-100 bg-white shadow rounded overflow-hidden">
                                         <div class="thumb">
                                             @if ($treatment->icon)
-                                                <img src="{{ Storage::url($treatment->icon) }}"
+                                                <img src="{{ asset('storage/' . $treatment->icon) }}"
+                                                    alt="{{ $treatment->title }}">
+
+                                                {{-- <img src="{{ Storage::url($treatment->icon) }}"
                                                     alt="{{ $treatment->title }}"
-                                                    style="height: 250px; object-fit: cover; width: 100%;">
+                                                    style="height: 250px; object-fit: cover; width: 100%;"> --}}
                                             @else
                                                 <img src="{{ asset('assets/img/departments/1.jpg') }}" alt="Thumb"
                                                     style="height: 250px; object-fit: cover; width: 100%;">
@@ -84,7 +87,7 @@
     <!-- End Services -->
 
     <!-- Start Fun Factor Area
-                                                                ============================================= -->
+                                                                                        ============================================= -->
     <div class="fun-factor-area half-bg-light-bottom bg-gray default-padding-bottom">
         <div class="container">
             <div class="fun-fact-items bg-gradient text-light text-center">
@@ -120,7 +123,7 @@
     <!-- End Fun Factor Area -->
 
     <!-- Start Consultation
-                                                                ============================================= -->
+                                                                                        ============================================= -->
     <div class="consultation-area default-padding-bottom">
         <div class="container">
             <div class="row align-center">

@@ -36,12 +36,6 @@
                 <div class="col-lg-8">
                     <div class="department-single-content">
 
-                        <!-- Breadcrumb-like top text -->
-                        <div class="mb-3 text-muted" style="font-size: 0.9rem;">
-                            Dr. Gazanfar, Orthopaedic Surgeon // Treatments // {{ ucfirst($treatment->type) }} // <span
-                                class="text-theme">{{ $treatment->title }}</span>
-                        </div>
-
                         <!-- Main H1 -->
                         <h1 class="mb-4" style="font-size: 2.2rem; font-weight: 700; line-height: 1.3;">
                             {{ $treatment->title }}
@@ -50,7 +44,7 @@
                         <!-- Thumb -->
                         @if ($treatment->icon)
                             <div class="thumb mb-4">
-                                <img src="{{ Storage::url($treatment->icon) }}" alt="{{ $treatment->title }}"
+                                <img src="{{ asset('storage/' . $treatment->icon) }}" alt="{{ $treatment->title }}"
                                     style="width: 100%; border-radius: 8px;">
                             </div>
                         @endif

@@ -66,8 +66,8 @@
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
                         <a href="{{ route('dashboard') }}">
-                            <img alt="image" src="{{ asset('assets/img/logo1.png') }}" class="header-logo"
-                                style="max-width: 150px;" />
+                            <img alt="image" src="{{ asset('assets/img/coastalcityorthopaedics-logo.png') }}"
+                                class="header-logo" style="max-width: 150px;" />
                         </a>
                     </div>
                     <ul class="sidebar-menu">

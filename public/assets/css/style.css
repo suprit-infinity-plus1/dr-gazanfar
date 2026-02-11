@@ -1840,7 +1840,7 @@ body,
   z-index: 1;
 }
 
-.banner-area.inc-shape .content::after {
+/* .banner-area.inc-shape .content::after {
   position: absolute;
   left: -50px;
   top: 0;
@@ -1853,7 +1853,7 @@ body,
   opacity: 0.2;
   font-weight: 600;
   font-size: 150px;
-}
+} */
 
 .banner-area.auto-height .fixed-shape-left-top {
   opacity: 0.06;
@@ -6158,54 +6158,56 @@ footer.demo .copyright {
 =================================================================== */
 
 .certificate-card {
-    position: relative;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    height: 350px;
-    display: block;
-    background: #000;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  height: 350px;
+  display: block;
+  background: #000;
 }
 
 .certificate-card .thumb {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .certificate-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.9;
-    
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+
 }
 
 
 .certificate-card .overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 13%, rgba(21, 55, 84, 0.5) 33%, transparent 45%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 30px;
-    z-index: 2;
-    pointer-events: none; /* Allows clicks to pass through */
-    text-align: left;
-    transform: translateY(30px);
-    transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 13%, rgba(21, 55, 84, 0.5) 33%, transparent 45%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30px;
+  z-index: 2;
+  pointer-events: none;
+  /* Allows clicks to pass through */
+  text-align: left;
+  transform: translateY(30px);
+  transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 .certificate-card:hover .overlay {
-    transform: translateY(0);
+  transform: translateY(0);
 }
+
 .certificate-card .overlay-content {
-    transform: translateY(0px);
-    transition: all 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+  transform: translateY(0px);
+  transition: all 0.7s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 .certificate-card:hover .overlay-content {
@@ -6213,38 +6215,37 @@ footer.demo .copyright {
 }
 
 .certificate-card .title {
-    color: var(--white);
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    padding-bottom: 15px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    position: relative;
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  padding-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
 }
 
 .certificate-card .description {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 0;
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
-    transition: all 0.4s ease;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 0;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
 }
 
 .certificate-card:hover .description {
-    opacity: 1;
-    height: auto;
-    margin-top: 10px;
+  opacity: 1;
+  height: auto;
+  margin-top: 10px;
 }
 
 .certificate-card .card-link {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
 }
-

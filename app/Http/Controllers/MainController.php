@@ -23,7 +23,16 @@ class MainController extends Controller
 
     public function index()
     {
-        return view('index');
+        $kneeTreatments = Treatment::where('status', 1)
+            ->where('type', 'knee')
+            ->limit(3)
+            ->get();
+        $recentBlogs = Blog::with('categories')
+            ->where('status', 1)
+            ->latest('published_at')
+            ->limit(3)
+            ->get();
+        return view('index', compact('kneeTreatments', 'recentBlogs'));
     }
 
     public function about()

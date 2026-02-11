@@ -16,14 +16,14 @@
     <meta property="og:url" content="@yield('canonical_url', url()->current())">
     <meta property="og:title" content="@yield('og_title', View::getSection('title') ?? 'Dr. Gazanfar')">
     <meta property="og:description" content="@yield('og_description', View::getSection('meta_description') ?? 'Dr. Gazanfar')">
-    <meta property="og:image" content="@yield('og_image', asset('assets/img/logo1.png'))">
+    <meta property="og:image" content="@yield('og_image', asset('assets/img/coastalcityorthopaedics-logo.png'))">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="@yield('canonical_url', url()->current())">
     <meta property="twitter:title" content="@yield('twitter_title', View::getSection('title') ?? 'Dr. Gazanfar')">
     <meta property="twitter:description" content="@yield('twitter_description', View::getSection('meta_description') ?? 'Dr. Gazanfar')">
-    <meta property="twitter:image" content="@yield('twitter_image', asset('assets/img/logo1.png'))">
+    <meta property="twitter:image" content="@yield('twitter_image', asset('assets/img/coastalcityorthopaedics-logo.png'))">
 
     <!-- Canonical -->
     <link rel="canonical" href="@yield('canonical_url', url()->current())">
@@ -32,7 +32,8 @@
     <title>@yield('title', 'Dr. Gazanfar')</title>
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
+    {{-- <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon"> --}}
+    <link rel="shortcut icon" href="{{ asset('assets/img/coastalcityorthopaedics-favicon.png') }}" type="image/x-icon">
 
     <!-- ========== Start Stylesheet ========== -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -118,7 +119,8 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="{{ route('home') }}">
-                        <img src="{{ asset('assets/img/logo1.png') }}" class="logo" alt="Logo">
+                        <img src="{{ asset('assets/img/coastalcityorthopaedics-logo.png') }}" class="logo"
+                            alt="Logo">
                     </a>
                 </div>
                 <!-- End Header Navigation -->
@@ -127,7 +129,7 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
 
                     <div class="collapse-header">
-                        <img src="{{ asset('assets/img/logo1.png') }}" alt="Logo">
+                        <img src="{{ asset('assets/img/coastalcityorthopaedics-logo.png') }}" alt="Logo">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                             <i class="fa fa-times"></i>
                         </button>
@@ -229,7 +231,7 @@
                     <div class="col-lg-4 col-md-6 item">
                         <div class="f-item about">
                             {{-- <img src="{{ asset('assets/img/logo-light.png') }}" alt="Logo"> --}}
-                            <img src="{{ asset('assets/img/logo1.png') }}" alt="Logo">
+                            <img src="{{ asset('assets/img/coastalcityorthopaedics-logo.png') }}" alt="Logo">
                             <p>
                                 Required honoured trifling eat pleasure man relation. Assurance yet bed was improving
                                 furniture man.

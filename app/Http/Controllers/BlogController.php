@@ -32,7 +32,7 @@ class BlogController extends Controller
 
         $latestBlogs = $query->with(['categories', 'tags'])
             ->orderBy('published_at', 'desc')
-            ->paginate(10);
+            ->paginate(6);
 
         return view('blogs', compact('categories', 'latestBlogs', 'tags', 'recentBlogs'));
     }
@@ -55,7 +55,7 @@ class BlogController extends Controller
             })
             ->with(['tags'])
             ->orderBy('published_at', 'desc')
-            ->paginate(10);
+            ->paginate(6);
 
         $title = 'Category: ' . $category->name;
 
@@ -80,7 +80,7 @@ class BlogController extends Controller
             ->where('status', true)
             ->with(['categories', 'tags'])
             ->orderBy('published_at', 'desc')
-            ->paginate(10);
+            ->paginate(6);
 
         $title = 'Tag: ' . $tag->name;
 

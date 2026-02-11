@@ -285,7 +285,7 @@ class BlogController extends Controller
      */
     public function categories()
     {
-        $categories = BlogCategory::withCount('blogs')->orderBy('name')->paginate(20);
+        $categories = BlogCategory::withCount('blogs')->orderBy('name')->paginate(10);
 
         return view('admin.blog_categories.index', compact('categories'));
     }
@@ -400,7 +400,7 @@ class BlogController extends Controller
      */
     public function tags()
     {
-        $tags = Tag::withCount('blogs')->orderBy('name')->paginate(20);
+        $tags = Tag::withCount('blogs')->orderBy('name')->paginate(10);
 
         return view('admin.blog_tags.index', compact('tags'));
     }
