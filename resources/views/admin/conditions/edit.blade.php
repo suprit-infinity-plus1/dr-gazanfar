@@ -50,7 +50,7 @@
                 </div>
 
                 <!-- Icon -->
-                <div>
+                <div>  
                     <label class="block text-sm font-medium text-gray-700 mb-1">Icon/Image</label>
                     <div class="flex flex-row gap-6 items-end">
                         @if ($condition->icon)
