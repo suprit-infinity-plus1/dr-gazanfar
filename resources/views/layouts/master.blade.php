@@ -180,9 +180,9 @@
                         <li>
                             <a href="{{ route('blogs') }}">Blogs</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#">Testimonials</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="{{ route('contact') }}">Contact</a>
                         </li>

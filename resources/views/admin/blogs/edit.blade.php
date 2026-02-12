@@ -97,7 +97,7 @@
                                 @if ($blog->cover_image)
                                     <div>
                                         <p class="text-xs text-gray-500 mb-1">Current</p>
-                                        <img src="{{ Storage::url($blog->cover_image) }}" alt="Current Cover"
+                                        <img src="{{ asset('storage/' . $blog->cover_image) }}" alt="Current Cover"
                                             class="w-16 h-16 rounded object-cover border border-gray-200">
                                     </div>
                                 @endif

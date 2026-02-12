@@ -40,7 +40,7 @@
                                     <div class="item d-flex flex-column w-100 bg-white shadow rounded overflow-hidden">
                                         <div class="thumb">
                                             @if ($condition->icon)
-                                                <img src="{{ Storage::url($condition->icon) }}"
+                                                <img src="{{ asset('storage/' . $condition->icon) }}"
                                                     alt="{{ $condition->title }}"
                                                     style="height: 250px; object-fit: cover; width: 100%;">
                                             @else

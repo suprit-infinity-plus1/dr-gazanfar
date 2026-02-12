@@ -42,7 +42,7 @@
 
                 <div class="col-lg-6 thumb">
                     <div class="thumb-box">
-                        <img src="{{ asset('assets/img/about/2.jpg') }}" alt="Thumb">
+                        <img src="{{ asset('assets/img/doctors/dr-gazanfar-about-us-img.jpeg') }}" alt="Thumb">
                         <div class="intro-video">
                             <div class="video">
                                 <a href="https://www.youtube.com/watch?v=5vY-D42NFP4"
@@ -195,7 +195,7 @@
                                                                                             ========================================= -->
     <div class="choose-us-area relative inc-list">
         <div class="row">
-            <div class="col-lg-6 thumb bg-cover" style="background-image: url({{ asset('assets/img/banner/3.jpg') }});">
+            <div class="col-lg-6 thumb bg-cover" style="background-image: url({{ asset('assets/img/doctors/dr-gazanfar-img.jpeg') }});">
             </div>
             <div class="col-lg-6 info">
                 <div class="info-box title">

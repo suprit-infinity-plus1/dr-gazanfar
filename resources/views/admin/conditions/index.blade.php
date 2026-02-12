@@ -20,7 +20,7 @@
             <table class="w-full text-left text-sm text-gray-600">
                 <thead class="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
                     <tr>
-                        <th class="px-6 py-3">Icon</th>
+                        <th class="px-6 py-3">Image</th>
                         <th class="px-6 py-3">Title</th>
                         <th class="px-6 py-3">Department Head</th>
                         <th class="px-6 py-3">Status</th>
@@ -32,7 +32,7 @@
                         <tr class="hover:bg-gray-50 transition-colors group">
                             <td class="px-6 py-4">
                                 @if ($condition->icon)
-                                    <img src="{{ Storage::url($condition->icon) }}" alt="Icon"
+                                    <img src="{{ asset('storage/' . $condition->icon) }}" alt="Icon"
                                         class="w-10 h-10 rounded object-cover border border-gray-200">
                                 @else
                                     <span class="text-gray-400">No Icon</span>

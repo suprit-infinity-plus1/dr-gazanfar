@@ -62,7 +62,7 @@
                             <tr class="hover:bg-gray-50 transition-colors group">
                                 <td class="px-6 py-4">
                                     @if ($blog->cover_image)
-                                        <img src="{{ Storage::url($blog->cover_image) }}" alt="Cover"
+                                        <img src="{{ asset('storage/' . $blog->cover_image) }}" alt="Cover"
                                             class="w-10 h-10 rounded object-cover border border-gray-200">
                                     @else
                                         <div

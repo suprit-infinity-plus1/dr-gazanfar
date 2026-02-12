@@ -56,7 +56,7 @@
                         @if ($treatment->icon)
                             <div>
                                 <label class="block text-xs text-gray-500 mb-1">Current Image</label>
-                                <img src="{{ Storage::url($treatment->icon) }}" alt="Current Icon"
+                                <img src="{{ asset('storage/' . $treatment->icon) }}" alt="Current Icon"
                                     class="w-16 h-16 rounded object-cover border border-gray-200">
                             </div>
                         @endif

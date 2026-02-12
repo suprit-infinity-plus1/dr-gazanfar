@@ -85,7 +85,7 @@
                             <div class="item">
                                 <div class="thumb">
                                     @if ($related->icon)
-                                        <img src="{{ Storage::url($related->icon) }}" alt="{{ $related->title }}"
+                                        <img src="{{ asset('storage/' . $related->icon) }}" alt="{{ $related->title }}"
                                             style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
                                     @else
                                         <img src="{{ asset('assets/img/departments/2.jpg') }}" alt="Placeholder"
