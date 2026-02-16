@@ -4895,6 +4895,17 @@ body,
   background: var(--white);
 }
 
+.sidebar-item.doctor-photo {
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  width: 100%;
+  margin: auto;
+  padding: 25px 24px 0px 25px;
+  background-color: #00000012;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+}
+
 .blog-area .sidebar .sidebar-item:last-child {
   margin-bottom: 0;
 }

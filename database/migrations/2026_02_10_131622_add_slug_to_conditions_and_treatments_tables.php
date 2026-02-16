@@ -10,13 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('conditions', function (Blueprint $table) {
-            $table->string('slug')->nullable()->after('title');
-        });
+        // Columns already exist in the create tables migrations
+        // Schema::table('conditions', function (Blueprint $table) {
+        //     $table->string('slug')->nullable()->after('title');
+        // });
 
-        Schema::table('treatments', function (Blueprint $table) {
-            $table->string('slug')->nullable()->after('title');
-        });
+        // Schema::table('treatments', function (Blueprint $table) {
+        //     $table->string('slug')->nullable()->after('title');
+        // });
     }
 
     /**
@@ -24,12 +25,12 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('conditions', function (Blueprint $table) {
-            $table->dropColumn('slug');
-        });
+        // Schema::table('conditions', function (Blueprint $table) {
+        //     $table->dropColumn('slug');
+        // });
 
-        Schema::table('treatments', function (Blueprint $table) {
-            $table->dropColumn('slug');
-        });
+        // Schema::table('treatments', function (Blueprint $table) {
+        //     $table->dropColumn('slug');
+        // });
     }
 };

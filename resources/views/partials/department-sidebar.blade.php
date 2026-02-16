@@ -3,7 +3,7 @@
         <!-- Doctor Photo -->
         <div class="sidebar-item doctor-photo text-center mb-4">
             <img src="{{ asset('assets/img/doctors/dr-gazanfar-profile-img.jpeg') }}" alt="Dr. Gazanfar"
-                class="img-fluid rounded" style="width: 100%; max-width: 300px; height: auto; object-fit: cover;">
+                class="img-fluid rounded" style="width: 100%; object-fit: cover;">
             <h4 class="mt-3">Dr. Gazanfar</h4>
             <p class="text-muted">Specialist Orthopaedic Surgeon</p>
         </div>
