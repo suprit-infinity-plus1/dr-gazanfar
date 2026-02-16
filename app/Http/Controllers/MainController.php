@@ -73,23 +73,23 @@ class MainController extends Controller
 
     public function hipTreatments()
     {
-        $treatments = Treatment::where('status', 1)->where('type', 'hip')->get();
-        return view('treatments-2', compact('treatments'));
+        $recentBlogs = Blog::latest()->limit(3)->get();
+        return view('treatments.hip', compact('recentBlogs'));
     }
     public function kneeTreatments()
     {
-        $treatments = Treatment::where('status', 1)->where('type', 'knee')->get();
-        return view('treatments-2', compact('treatments'));
+        $recentBlogs = Blog::latest()->limit(3)->get();
+        return view('treatments.knee', compact('recentBlogs'));
     }
     public function hipConditions()
     {
-        $conditions = Condition::where('status', 1)->where('type', 'hip')->get();
-        return view('conditions', compact('conditions'));
+        $recentBlogs = Blog::latest()->limit(3)->get();
+        return view('conditions.hip', compact('recentBlogs'));
     }
     public function kneeConditions()
     {
-        $conditions = Condition::where('status', 1)->where('type', 'knee')->get();
-        return view('conditions', compact('conditions'));
+        $recentBlogs = Blog::latest()->limit(3)->get();
+        return view('conditions.knee', compact('recentBlogs'));
     }
 
     public function condition($slug)
