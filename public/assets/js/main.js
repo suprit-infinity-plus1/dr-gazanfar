@@ -6,10 +6,10 @@
     
 * ================================================================= */
 
-(function($) {
+(function ($) {
     "use strict";
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
 
         /* ==================================================
@@ -23,13 +23,13 @@
             live: true // act on asynchronously loaded content (default is true)
         });
         wow.init();
-        
+
 
         /* ==================================================
             # Tooltip Init
         ===============================================*/
-        $('[data-toggle="tooltip"]').tooltip(); 
-        
+        $('[data-toggle="tooltip"]').tooltip();
+
 
 
         /* ==================================================
@@ -39,7 +39,7 @@
             target: ".navbar-collapse",
             offset: 200
         });
-        $('a.smooth-menu').on('click', function(event) {
+        $('a.smooth-menu').on('click', function (event) {
             var $anchor = $(this);
             var headerH = '75';
             $('html, body').stop().animate({
@@ -55,10 +55,10 @@
         function doAnimations(elems) {
             //Cache the animationend event in a variable
             var animEndEv = 'webkitAnimationEnd animationend';
-            elems.each(function() {
+            elems.each(function () {
                 var $this = $(this),
                     $animationType = $this.data('animation');
-                $this.addClass($animationType).one(animEndEv, function() {
+                $this.addClass($animationType).one(animEndEv, function () {
                     $this.removeClass($animationType);
                 });
             });
@@ -72,7 +72,7 @@
         //Animate captions in first slide on page load
         doAnimations($firstAnimatingElems);
         //Other slides to be animated on carousel slide event
-        $immortalCarousel.on('slide.bs.carousel', function(e) {
+        $immortalCarousel.on('slide.bs.carousel', function (e) {
             var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
             doAnimations($animatingElems);
         });
@@ -80,10 +80,10 @@
         /* ==================================================
             # imagesLoaded active
         ===============================================*/
-        $('#portfolio-grid,.blog-masonry').imagesLoaded(function() {
+        $('#portfolio-grid,.blog-masonry').imagesLoaded(function () {
 
             /* Filter menu */
-            $('.mix-item-menu').on('click', 'button', function() {
+            $('.mix-item-menu').on('click', 'button', function () {
                 var filterValue = $(this).attr('data-filter');
                 $grid.isotope({
                     filter: filterValue
@@ -91,7 +91,7 @@
             });
 
             /* filter menu active class  */
-            $('.mix-item-menu button').on('click', function(event) {
+            $('.mix-item-menu button').on('click', function (event) {
                 $(this).siblings('.active').removeClass('active');
                 $(this).addClass('active');
                 event.preventDefault();
@@ -118,11 +118,11 @@
         });
 
 
-         /* ==================================================
-            # Fun Factor Init
-        ===============================================*/
+        /* ==================================================
+           # Fun Factor Init
+       ===============================================*/
         $('.timer').countTo();
-        $('.fun-fact').appear(function() {
+        $('.fun-fact').appear(function () {
             $('.timer').countTo();
         }, {
             accY: -100
@@ -134,6 +134,7 @@
          ===============================================*/
         $(".popup-link").magnificPopup({
             type: 'image',
+            fixedContentPos: false,
             // other options
         });
 
@@ -153,12 +154,12 @@
             fixedContentPos: false
         });
 
-        $('.magnific-mix-gallery').each(function() {
+        $('.magnific-mix-gallery').each(function () {
             var $container = $(this);
             var $imageLinks = $container.find('.item');
 
             var items = [];
-            $imageLinks.each(function() {
+            $imageLinks.each(function () {
                 var $item = $(this);
                 var type = 'image';
                 if ($item.hasClass('magnific-iframe')) {
@@ -181,8 +182,9 @@
                     tNext: $(this).data('next-text')
                 },
                 type: 'image',
+                fixedContentPos: false,
                 callbacks: {
-                    beforeOpen: function() {
+                    beforeOpen: function () {
                         var index = $imageLinks.index(this.st.el);
                         if (-1 !== index) {
                             this.goTo(index);
@@ -199,7 +201,7 @@
         $('.doctors-carousel').owlCarousel({
             loop: false,
             nav: false,
-            margin:30,
+            margin: 30,
             dots: true,
             autoplay: true,
             items: 1,
@@ -216,7 +218,7 @@
         $('.tips-carousel').owlCarousel({
             loop: false,
             nav: false,
-            margin:30,
+            margin: 30,
             dots: true,
             autoplay: true,
             items: 1,
@@ -260,7 +262,7 @@
         $('.testimonials-carousel').owlCarousel({
             loop: true,
             nav: false,
-            margin:30,
+            margin: 30,
             dots: true,
             autoplay: false,
             items: 1,
@@ -290,13 +292,13 @@
         /* ==================================================
             Contact Form Validations
         ================================================== */
-        $('.contact-form').each(function() {
+        $('.contact-form').each(function () {
             var formInstance = $(this);
-            formInstance.submit(function() {
+            formInstance.submit(function () {
 
                 var action = $(this).attr('action');
 
-                $("#message").slideUp(750, function() {
+                $("#message").slideUp(750, function () {
                     $('#message').hide();
 
                     $('#submit')
@@ -304,15 +306,15 @@
                         .attr('disabled', 'disabled');
 
                     $.post(action, {
-                            name: $('#name').val(),
-                            email: $('#email').val(),
-                            phone: $('#phone').val(),
-                            comments: $('#comments').val()
-                        },
-                        function(data) {
+                        name: $('#name').val(),
+                        email: $('#email').val(),
+                        phone: $('#phone').val(),
+                        comments: $('#comments').val()
+                    },
+                        function (data) {
                             document.getElementById('message').innerHTML = data;
                             $('#message').slideDown('slow');
-                            $('.contact-form img.loader').fadeOut('slow', function() {
+                            $('.contact-form img.loader').fadeOut('slow', function () {
                                 $(this).remove()
                             });
                             $('#submit').removeAttr('disabled');
@@ -327,7 +329,7 @@
     /* ==================================================
         Preloader Init
         ===============================================*/
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         // Animate loader off screen
         $(".se-pre-con").fadeOut("slow");;
     });

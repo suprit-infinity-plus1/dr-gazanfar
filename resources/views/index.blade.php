@@ -6,7 +6,7 @@
     dental, and general health services.')
 @section('content')
     <!-- Start Banner
-                                                                                                                                                                                                                                                                                    ============================================= -->
+                                                                                                                                                                                                                                                                                                ============================================= -->
     <div class="banner-area inc-shape content-less">
         <div id="bootcarousel" class="carousel text-light text-large slide carousel-fade animate_text" data-ride="carousel">
             <!-- Wrapper for slides -->
@@ -73,7 +73,7 @@
     <!-- End Banner -->
 
     <!-- Start Top Entry
-                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                            ============================================= -->
     <div class="top-entry-area relative default-padding text-center">
         <div class="container">
             <div class="item-box">
@@ -300,7 +300,7 @@
     <!-- End Services -->
 
     <!-- Start Consultation
-                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                            ============================================= -->
     <div class="consultation-area default-padding">
         <div class="container">
             <div class="row align-center">
@@ -399,7 +399,7 @@
     <!-- End Consultation -->
 
     <!-- Start Choose Us
-                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                            ============================================= -->
     <div class="choose-us-area">
         <div class="row">
             <div class="col-lg-6 thumb bg-cover"
@@ -427,7 +427,7 @@
     <!-- End Choose Us -->
 
     <!-- Start Doctos Area
-                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                            ============================================= -->
     {{-- <div class="doctors-area bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -469,7 +469,7 @@
     <!-- End Doctos Area -->
 
     <!-- Start Gallery
-                                                                                                                                                                                                                                                                                                                                                                            ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                        ============================================= -->
     <div class="gallery-area default-padding">
         <div class="container">
             <div class="row">
@@ -502,74 +502,63 @@
                         <div class="magnific-mix-gallery masonary">
                             <div id="portfolio-grid" class="gallery-items colums-3">
                                 <!-- Single Item -->
+                                <!-- Single Item -->
                                 <div class="pf-item development capital">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/gallery-1.jpeg') }}" alt="thumb">
-                                        <div class="info">
-                                            <h4><a href="#">General Surgery</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/gallery-1.jpeg') }}"
-                                                class="item popup-link"><i class="fa fa-plus"></i></a>
-                                        </div>
+                                        <a href="{{ asset('assets/img/gallery/gallery-1.jpeg') }}"
+                                            class="item popup-link">
+                                            <img src="{{ asset('assets/img/gallery/gallery-1.jpeg') }}" alt="thumb">
+                                        </a>
                                     </div>
                                 </div>
                                 <!-- End Single Item -->
                                 <!-- Single Item -->
                                 <div class="pf-item consulting branding">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/gallery-2.jpeg') }}" alt="thumb">
-                                        <div class="info">
-                                            <h4><a href="#">Primary Care</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/gallery-2.jpeg') }}"
-                                                class="item popup-link"><i class="fa fa-plus"></i></a>
-                                        </div>
+                                        <a href="{{ asset('assets/img/gallery/gallery-2.jpeg') }}"
+                                            class="item popup-link">
+                                            <img src="{{ asset('assets/img/gallery/gallery-2.jpeg') }}" alt="thumb">
+                                        </a>
                                     </div>
                                 </div>
                                 <!-- End Single Item -->
                                 <!-- Single Item -->
                                 <div class="pf-item consulting finance">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/gallery-3.jpeg') }}" alt="thumb">
-                                        <div class="info">
-                                            <h4><a href="#">Cardiology</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/gallery-3.jpeg') }}"
-                                                class="item popup-link"><i class="fa fa-plus"></i></a>
-                                        </div>
+                                        <a href="{{ asset('assets/img/gallery/gallery-3.jpeg') }}"
+                                            class="item popup-link">
+                                            <img src="{{ asset('assets/img/gallery/gallery-3.jpeg') }}" alt="thumb">
+                                        </a>
                                     </div>
                                 </div>
                                 <!-- End Single Item -->
                                 <!-- Single Item -->
                                 <div class="pf-item finance">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/gallery-4.jpeg') }}" alt="thumb">
-                                        <div class="info">
-                                            <h4><a href="#">Cancer Care</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/gallery-4.jpeg') }}"
-                                                class="item popup-link"><i class="fa fa-plus"></i></a>
-                                        </div>
+                                        <a href="{{ asset('assets/img/gallery/gallery-4.jpeg') }}"
+                                            class="item popup-link">
+                                            <img src="{{ asset('assets/img/gallery/gallery-4.jpeg') }}" alt="thumb">
+                                        </a>
                                     </div>
                                 </div>
                                 <!-- End Single Item -->
                                 <!-- Single Item -->
                                 <div class="pf-item capital development">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/gallery-5.jpeg') }}" alt="thumb">
-                                        <div class="info">
-                                            <h4><a href="#">Knee Treatment</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/gallery-5.jpeg') }}"
-                                                class="item popup-link"><i class="fa fa-plus"></i></a>
-                                        </div>
+                                        <a href="{{ asset('assets/img/gallery/gallery-5.jpeg') }}"
+                                            class="item popup-link">
+                                            <img src="{{ asset('assets/img/gallery/gallery-5.jpeg') }}" alt="thumb">
+                                        </a>
                                     </div>
                                 </div>
                                 <!-- End Single Item -->
                                 <!-- Single Item -->
                                 <div class="pf-item consulting branding">
                                     <div class="effect-box">
-                                        <img src="{{ asset('assets/img/gallery/gallery-6.jpeg') }}" alt="thumb">
-                                        <div class="info">
-                                            <h4><a href="#">Eye Care</a></h4>
-                                            <a href="{{ asset('assets/img/gallery/gallery-6.jpeg') }}"
-                                                class="item popup-link"><i class="fa fa-plus"></i></a>
-                                        </div>
+                                        <a href="{{ asset('assets/img/gallery/gallery-6.jpeg') }}"
+                                            class="item popup-link">
+                                            <img src="{{ asset('assets/img/gallery/gallery-6.jpeg') }}" alt="thumb">
+                                        </a>
                                     </div>
                                 </div>
                                 <!-- Single Item -->
@@ -583,7 +572,7 @@
     <!-- End Gallery -->
 
     <!-- Start Testomonials
-                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                            ============================================= -->
     <div class="testimonials-area overflow-hidden carousel-shadow default-padding">
         <div class="container">
             <div class="row align-center">
@@ -657,7 +646,7 @@
     <!-- End Testomonials Area -->
 
     <!-- Start Blog
-                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                            ============================================= -->
     <div class="blog-area bottom-less bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -733,7 +722,7 @@
     <!-- End Blog Area -->
 
     <!-- Start Contact Area
-                                                                                                                                                                                                                                                                                                                                                                                ============================================= -->
+                                                                                                                                                                                                                                                                                                                                                                                            ============================================= -->
     <div id="contact" class="contact-us-area default-padding">
         <div class="container">
             <div class="contact-items">
