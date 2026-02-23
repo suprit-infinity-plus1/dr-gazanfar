@@ -119,12 +119,6 @@
                                 </tbody>
                             </table>
 
-                            <div class="mt-4 p-4 bg-gray rounded border-l-4 border-theme">
-                                <h5 class="mb-2">Book a Consultation</h5>
-                                <p class="mb-0">To find out which hip treatment is right for you, schedule a consultation
-                                    today. <a href="tel:+919820727046" class="text-theme font-bold">Call +91 98207 27046</a>
-                                </p>
-                            </div>
                         </div>
 
                     </div>
