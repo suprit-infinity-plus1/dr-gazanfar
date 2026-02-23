@@ -1,17 +1,17 @@
 <div class="sidebar wow fadeInLeft col-lg-4 col-md-12">
     <aside style="position: sticky; top: 100px;">
         <!-- Doctor Photo -->
-        <div class="sidebar-item doctor-photo text-center mb-4">
+        <div class="sidebar-item doctor-photo text-center mb-4" style="padding-bottom: 25px;">
             <img src="{{ asset('assets/img/doctors/dr-gazanfar-profile-img.jpeg') }}" alt="Dr. Gazanfar"
-                class="img-fluid rounded" style="width: 100%; object-fit: cover;">
+                class="img-fluid rounded" style="width: 85%; height: auto; object-fit: cover; margin: 0 auto;">
             <h4 class="mt-3">Dr. Gazanfar</h4>
             <p class="text-muted">Specialist Orthopaedic Surgeon</p>
-        </div>
-        <div class="sidebar-item doctor-contact text-center mb-4">
-            <a href="tel:+919876543210" class="btn btn-md btn-block text-white"
-                style="background-color: #153754; border-radius: 5px;">
-                <i class="fas fa-phone fa-flip-horizontal mr-2"></i> Call: 98765 43210
-            </a>
+            <div class="doctor-contact mt-3">
+                <a href="tel:+919876543210" class="btn btn-md btn-block text-white"
+                    style="background-color: #153754; border-radius: 5px;">
+                    <i class="fas fa-phone fa-flip-horizontal mr-2"></i> Call: 98765 43210
+                </a>
+            </div>
         </div>
 
         <!-- Recent Posts -->
