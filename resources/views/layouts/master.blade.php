@@ -109,12 +109,36 @@
     <header>
         <!-- Start Navigation -->
         <nav class="navbar mobile-sidenav navbar-sticky navbar-default validnavs dark">
-
+            <div class="overlay-screen"></div>
             <div class="container d-flex justify-content-between align-items-center">
 
+                <!-- Mobile/Tablet Shadow Header (768px - 1023px and below) -->
+                <div class="custom-mobile-header d-lg-none">
+                    <!-- Strip 1: Logo Row -->
+                    <div class="mobile-logo-strip text-center">
+                        <a href="{{ route('home') }}">
+                            <img src="{{ asset('assets/img/coastalcityorthopaedics-logo.png') }}" class="mobile-logo"
+                                alt="Logo">
+                        </a>
+                    </div>
+                    <!-- Strip 2: Tools Row -->
+                    <div class="mobile-tools-strip d-flex justify-content-between align-items-center">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="mobile-social-icons">
+                            <ul class="d-flex list-unstyled m-0">
+                                <li class="ms-3"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li class="ms-3"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li class="ms-3"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                <li class="ms-3"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div> <!-- End mobile-tools-strip -->
+                </div> <!-- End custom-mobile-header -->
 
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
+                <!-- Desktop Header Navigation (Legacy) -->
+                <div class="navbar-header d-none d-lg-block">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
                     </button>
@@ -128,9 +152,10 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
 
-                    <div class="collapse-header">
+                    <div class="collapse-header d-lg-none">
                         <img src="{{ asset('assets/img/coastalcityorthopaedics-logo.png') }}" alt="Logo">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <button type="button" class="btn-close-sidebar"
+                            onclick="document.querySelector('.navbar-collapse').classList.remove('show','in','on','opened'); document.querySelector('.overlay-screen').classList.remove('opened');">
                             <i class="fa fa-times"></i>
                         </button>
                     </div>
@@ -389,3 +414,4 @@
 </body>
 
 </html>
+```

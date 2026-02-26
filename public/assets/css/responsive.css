@@ -2,6 +2,11 @@
     #RESPONSIVE CSS 
 ====================================*/
 
+/* Hide Mobile Sidebar Header globally, only show in mobile queries */
+.collapse-header {
+  display: none;
+}
+
 /* Tablet Layout: 768px.*/
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 
@@ -27,11 +32,13 @@
 
   /* Banner */
 
-  body, .banner-area, .banner-area div {
+  body,
+  .banner-area,
+  .banner-area div {
     height: auto;
   }
 
-  .banner-area .double-items, 
+  .banner-area .double-items,
   .banner-area .content {
     padding: 120px 0;
   }
@@ -273,7 +280,7 @@
     box-shadow: 0 0 10px #e7e7e7;
   }
 
-  .contact-us-area .contact-items > .row {
+  .contact-us-area .contact-items>.row {
     margin-left: 0;
     margin-right: 0;
   }
@@ -357,7 +364,7 @@
 
   .departments-area.bg-gray .department-area-tabs li.nav-item button {
     width: 100%;
-  } 
+  }
 
   /* Blog */
   .blog-area.left-sidebar .blog-content {
@@ -562,7 +569,7 @@
     margin-top: 20px;
   }
 
-  .breadcrumb-area .breadcrumb a, 
+  .breadcrumb-area .breadcrumb a,
   .breadcrumb-area .breadcrumb li {
     color: #ffffff;
   }
@@ -581,7 +588,7 @@
     display: none;
   }
 
-  nav .attr-nav > ul > li.contact {
+  nav .attr-nav>ul>li.contact {
     display: none;
   }
 
@@ -608,7 +615,9 @@
     padding: 0;
   }
 
-  body, .banner-area, .banner-area div {
+  body,
+  .banner-area,
+  .banner-area div {
     height: auto;
   }
 
@@ -651,7 +660,7 @@
   .banner-area:hover .carousel-control-next-icon {
     display: none;
   }
-  
+
   .choose-us-area.inc-list {
     overflow: hidden;
   }
@@ -1120,7 +1129,7 @@
     margin-top: 5px;
   }
 
-  .blog-area .blog-content .post-tags, 
+  .blog-area .blog-content .post-tags,
   .blog-area .blog-content .share {
     display: block;
     text-align: center;
@@ -1165,7 +1174,7 @@
     padding-left: 0;
   }
 
-  .comments-list .commen-item .content, 
+  .comments-list .commen-item .content,
   .comments-list .commen-item .avatar {
     display: block;
     text-align: center;
@@ -1232,7 +1241,7 @@
 
   .blog-area .single-item .info h4 {
     font-size: 25px;
-  } 
+  }
 
 
   .departments-area .department-area-tabs {
@@ -1245,7 +1254,7 @@
     min-height: 400px;
   }
 
-  .contact-us-area .contact-items > .row {
+  .contact-us-area .contact-items>.row {
     margin-left: 0;
     margin-right: 0;
   }
@@ -1318,7 +1327,7 @@
   }
 
   /* Blog */
-  .comments-list .commen-item .content, 
+  .comments-list .commen-item .content,
   .comments-list .commen-item .avatar {
     display: table-cell;
     text-align: left;
@@ -1408,5 +1417,205 @@
   /* global reset - start */
   .order-last {
     order: 0;
+  }
+}
+
+/* ============================================================== 
+   # ROBUST SHADOW HEADER FIX (VERTICAL STACK + STICKY)
+   ============================================================== */
+@media only screen and (max-width: 1023px) {
+
+  /* Hide Desktop Theme Header parts */
+  .navbar-header.d-lg-block {
+    display: none !important;
+  }
+
+  .top-bar-area,
+  .attr-right {
+    display: none !important;
+  }
+
+  /* Force the container to block so the strips stack */
+  nav.navbar.validnavs .container {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* Style Shadow Header */
+  .custom-mobile-header {
+    display: block !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    position: relative !important;
+    z-index: 10 !important;
+    /* Low layer inside nav */
+  }
+
+  /* Row 1: Logo Alone */
+  .mobile-logo-strip {
+    padding: 15px 0 !important;
+    border-bottom: 1px solid #f1f1f1;
+    text-align: center !important;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-logo {
+    height: 100px !important;
+    width: auto !important;
+    max-width: 80% !important;
+    display: inline-block !important;
+  }
+
+  /* Sidebar Logo Scaling */
+  .collapse-header img {
+    display: block !important;
+    height: 120px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin-bottom: 25px !important;
+  }
+
+  /* Row 2: Navigation Tools */
+  .mobile-tools-strip {
+    padding: 10px 20px !important;
+    background: #ffffff !important;
+    border-bottom: 2px solid #eee !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    position: relative !important;
+    z-index: 20 !important;
+    /* Slightly above logo strip, still below overlay */
+    pointer-events: auto !important;
+  }
+
+  /* Hamburger Button Styling */
+  .custom-mobile-header .navbar-toggle {
+    display: flex !important;
+    background: #001242 !important;
+    color: #fff !important;
+    padding: 8px 12px !important;
+    border-radius: 4px;
+    font-size: 20px !important;
+    margin: 0 !important;
+  }
+
+  /* Social Icons Styling */
+  .mobile-social-icons ul li a {
+    width: 36px;
+    height: 36px;
+    background: #001242;
+    color: #fff !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  /* STICKY BEHAVIOR: Hide logo strip on scroll */
+  nav.navbar.validnavs.sticked .mobile-logo-strip {
+    display: none !important;
+  }
+
+  /* Ensure only the tools strip is visible when sticked */
+  nav.navbar.validnavs.sticked .mobile-tools-strip {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Simplified Sidebar Backdrop Overlay */
+  .overlay-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 100 !important;
+    /* Middle layer, covers strips (10-20) */
+    display: none;
+    cursor: pointer;
+    pointer-events: none;
+  }
+
+  .overlay-screen.opened {
+    display: block !important;
+    pointer-events: auto !important;
+  }
+
+  /* Sidebar close button - Reverted to Right-Aligned Circular Style */
+  .btn-close-sidebar {
+    background: #eeeeee !important;
+    color: #001242 !important;
+    font-size: 18px !important;
+    border: none !important;
+    height: 36px !important;
+    width: 36px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
+    z-index: 2000000 !important;
+    /* Above everything */
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-close-sidebar:hover {
+    background: #dddddd !important;
+  }
+
+  .collapse-header {
+    position: relative !important;
+    overflow: visible !important;
+    display: block !important;
+    width: 100% !important;
+    z-index: 1999999 !important;
+  }
+
+  /* Force 'X' icon for sidebar close button */
+  .btn-close-sidebar i::before {
+    content: "\f00d" !important;
+    font-family: "Font Awesome 5 Free", "FontAwesome" !important;
+    font-weight: 900 !important;
+  }
+
+  /* Small Phone adjustments */
+  @media (max-width: 480px) {
+    .mobile-logo {
+      height: 80px !important;
+    }
+
+    .mobile-logo-strip {
+      padding: 10px 0 !important;
+    }
+
+    .mobile-tools-strip {
+      padding: 8px 15px !important;
+    }
+  }
+
+  /* SIDEBAR LAYER FIX: Sidebar (1000) > Overlay (100) > Header Strips (10-20) */
+  .navbar-collapse.collapse-mobile,
+  .navbar-collapse.show,
+  .navbar-collapse.in {
+    z-index: 1000 !important;
+    /* Highest layer inside nav tree */
+    position: fixed !important;
+    background: #ffffff !important;
+    pointer-events: auto !important;
+  }
+
+  /* Global Elevated Context for Mobile Nav */
+  header,
+  nav.navbar {
+    z-index: 100000 !important;
+    /* Elevate entire tree above page body */
   }
 }
